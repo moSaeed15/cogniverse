@@ -7,7 +7,7 @@ import NavBar from './components/NavBar';
 const Dashboard = () => {
   return (
     <div className="flex justify-between">
-      <aside className="bg-sidebar-background max-w-64 min-h-screen flex flex-col px-3 py-5  bg-white">
+      <aside className="bg-sidebar-background max-w-64 min-h-[70vh] m-5 flex flex-col px-3 py-5  bg-white rounded-2xl custom-border">
         <div className="flex items-center gap-5">
           <Link href={'/'}>
             <Image
