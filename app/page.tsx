@@ -3,6 +3,8 @@ import DashboardMenu from './components/DashboardMenu';
 import Link from 'next/link';
 import { CiLogout } from 'react-icons/ci';
 import NavBar from './components/NavBar';
+import Sidebar from './components/Sidebar';
+import MainDashboard from './components/MainDashboard';
 
 const Dashboard = () => {
   return (
@@ -29,6 +31,7 @@ const Dashboard = () => {
         </button>
       </aside>
       <NavBar />
+      <MainDashboard />
     </div>
   );
 };
