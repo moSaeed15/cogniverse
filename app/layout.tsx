@@ -19,13 +19,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} min-h-screen`}>
         <main className="main-background text-white relative z-50">
-          <Image
-            fill
-            alt="main-background"
-            src={'/background-image.png'}
-            priority
-            className="absolute  -z-10"
-          />
           {children}
         </main>
       </body>

@@ -34,3 +34,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.cogniverse-e330a-firebase-adminsdk-b8ic4-bdc88b38dc.json

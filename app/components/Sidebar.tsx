@@ -1,14 +1,14 @@
-import React from "react";
-import DashboardMenu from "./DashboardMenu";
-import { CiLogout } from "react-icons/ci";
-import Link from "next/link";
-import Image from "next/image";
+import React from 'react';
+import DashboardMenu from './DashboardMenu';
+import { CiLogout } from 'react-icons/ci';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const Sidebar = () => {
   return (
-    <aside className="bg-sidebar-background max-w-64 min-h-[82vh] m-5 flex flex-col px-3 py-5  bg-white rounded-2xl custom-border">
+    <aside className="bg-sidebar-background w-72 max-h-[70vh] m-5 flex flex-col px-3 py-5  bg-white rounded-2xl custom-border">
       <div className="flex items-center gap-5">
-        <Link href={"/"}>
+        <Link href={'/'}>
           <Image
             src="/cogniverse-logo.svg"
             alt="congniverse logo"

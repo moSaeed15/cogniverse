@@ -1,4 +1,4 @@
-import PairText from "./PairText";
+import PairText from './PairText';
 
 const PatientCard = () => {
   return (
@@ -18,7 +18,7 @@ const PatientCard = () => {
         </div>
         <div className="flex flex-col gap-3">
           <PairText title="Email:" text="mohammed.elsaeed@gmail.com" />
-          <PairText title="Diagnosis:" text="ADHD" />
+          <PairText title="Diagnosis:" text="Down Syndrome" />
           <PairText title="Reinforcment Type:" text="Negative" />
         </div>
       </div>
