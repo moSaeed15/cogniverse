@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import LoginButton from './LoginButton';
 
 const Login = () => {
   return (
@@ -15,10 +16,7 @@ const Login = () => {
         <p className="text-light-grey font-medium max-w-72 my-3">
           Sign in with your google credentials to access the patient dashboard
         </p>
-        <button className="flex items-center w-1/2 mt-5 justify-center border-2 border-gray-300 rounded-md shadow-sm py-2 px-4 text-base gap-5 focus:outline-none focus:ring-2  focus:ring-indigo-500 focus:border-indigo-500 ">
-          <Image src="/google.svg" alt="google icon" width={20} height={20} />
-          Sign in with Google
-        </button>
+        <LoginButton />
       </div>
     </div>
   );

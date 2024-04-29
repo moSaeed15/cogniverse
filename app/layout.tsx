@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
-import Image from 'next/image';
+import AuthProvider from './auth/Provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen`}>
-        <main className="main-background text-white relative z-50">
-          {children}
-        </main>
+        <AuthProvider>
+          <main className="main-background text-white relative z-50">
+            {children}
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );

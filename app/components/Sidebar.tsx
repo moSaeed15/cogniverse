@@ -3,6 +3,7 @@ import DashboardMenu from './DashboardMenu';
 import { CiLogout } from 'react-icons/ci';
 import Link from 'next/link';
 import Image from 'next/image';
+import LogoutButton from './LogoutButton';
 
 const Sidebar = () => {
   return (
@@ -23,9 +24,7 @@ const Sidebar = () => {
       <div className="custom-divider"></div>
 
       <DashboardMenu />
-      <button className="btn bg-brand-red hover:bg-red-600 text-white mt-auto transition-colors ">
-        <CiLogout size={20} color="white" /> Log out
-      </button>
+      <LogoutButton />
     </aside>
   );
 };
