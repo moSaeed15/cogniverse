@@ -36,11 +36,17 @@ const FirebaseGet = () => {
       console.log(filteredData);
 
       const userId = filteredData[0].id;
-      // const usersCollectionRefID = collection(db, `users/${userId}`);
-
+      
       const docRef = doc(db, `users`, userId);
-      const userCollectionRef = docRef.collection("patients");
-      await setDoc(docRef, { test: "dadkj" });
+      const patientRef = doc(docRef, "patients", "ada");
+
+      const res = await setDoc(patientRef, {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815,
+      });
+
+      // await setDoc(docRef, { test: "dadkj" });
     };
 
     getDoctor();
