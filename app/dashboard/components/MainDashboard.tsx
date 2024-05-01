@@ -1,13 +1,14 @@
 'use client';
-
-import { get, ref } from 'firebase/database';
+import { get, query, ref } from 'firebase/database';
 import { useEffect, useState } from 'react';
-import { database } from '@/app/FirebaseConfig';
-
+import { database, db } from '@/app/FirebaseConfig';
 import PatientCard from './PatientCard';
 import StatusCard from './StatusCard';
 import WelcomeCard from './WelcomeCard';
 import LineChartComponent from './LineChartComponent';
+import { getSession } from 'next-auth/react';
+import { collection, doc, getDocs } from 'firebase/firestore';
+import { Session } from 'next-auth';
 
 interface TryItem {
   date: string;
@@ -19,8 +20,29 @@ interface TryItem {
 
 const MainDashboard = () => {
   const [tries, setTries] = useState<{ count: string; Time: number }[]>();
-
+  const usersCollectionRef = collection(db, 'users');
   useEffect(() => {
+    let doctor: Session;
+
+    const getDoctor = async () => {
+      const session = await getSession();
+      console.log(session);
+      doctor = session!;
+
+      try {
+        const data = await getDocs(usersCollectionRef);
+        const filteredData = data.docs.map(doc => ({
+          id: doc.id,
+        }));
+        console.log(filteredData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getDoctor();
+
+    // code for patient retrival
     const userRef = ref(database, 'users/28Vwffza7FRCQnulxvoursRyhYL2/maze');
 
     get(userRef).then(snapshot => {
@@ -68,7 +90,7 @@ const MainDashboard = () => {
         <WelcomeCard />
         <PatientCard />
       </div>
-      {tries && <LineChartComponent tries={tries} />}
+      {/* {tries && <LineChartComponent tries={tries} />} */}
     </div>
   );
 };
