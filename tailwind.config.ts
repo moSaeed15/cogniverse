@@ -33,7 +33,14 @@ const config: Config = {
     },
   },
   daisyui: {
-    themes: ['dark'],
+    themes: [
+      {
+        night: {
+          ...require('daisyui/src/theming/themes')['night'],
+          primary: '#7480ff',
+        },
+      },
+    ],
   },
   plugins: [require('daisyui')],
 };
