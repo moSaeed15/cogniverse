@@ -7,14 +7,14 @@ import { getSession } from 'next-auth/react';
 import { Session } from 'next-auth';
 import { capitalize } from '@/utils/captalize';
 
-interface PatientData {
+export interface DbPatientData {
   id: string;
   name: string;
 }
 
 interface DoctorData {
   id: string;
-  patientsData: PatientData[];
+  patientsData: DbPatientData[];
 }
 
 const useDoctorData = (): DoctorData | undefined => {
@@ -41,18 +41,18 @@ const useDoctorData = (): DoctorData | undefined => {
     return userId;
   };
 
-  const getPatientsData = async (): Promise<PatientData[] | null> => {
+  const getPatientsData = async (): Promise<DbPatientData[] | null> => {
     const userRef = ref(database, 'users');
     try {
       const snapshot = await get(userRef);
-      const patientDataArr: PatientData[] = [];
+      const patientDataArr: DbPatientData[] = [];
 
       snapshot.forEach(childSnapshot => {
         const firstName = capitalize(childSnapshot.val().firstName);
         const lastName = capitalize(childSnapshot.val().lastName);
         const fullName = `${firstName} ${lastName}`.replace('  ', ' ');
 
-        const patientData: PatientData = {
+        const patientData: DbPatientData = {
           id: childSnapshot.key || '',
           name: fullName,
         };

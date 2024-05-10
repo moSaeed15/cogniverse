@@ -7,7 +7,7 @@ import LogoutButton from './LogoutButton';
 
 const Sidebar = () => {
   return (
-    <aside className="bg-sidebar-background w-72 max-h-[70vh] m-5 flex flex-col px-3 py-5  bg-white rounded-2xl custom-border">
+    <aside className="bg-sidebar-background w-72 min-h-[60vh] max-h-[70vh] m-5 flex flex-col px-3 py-5  bg-white rounded-2xl custom-border">
       <div className="flex items-center gap-5">
         <Link href={'/'}>
           <Image

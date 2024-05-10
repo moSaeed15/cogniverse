@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface Props {
   title: string;
@@ -15,17 +15,19 @@ const StatusCard = ({ title, image, number, isTime }: Props) => {
 
         <span className="text-lg">
           {number}
-          {isTime ? " seconds" : ""}
+          {isTime ? ' seconds' : ''}
         </span>
       </div>
       <div className="bg-status-blue p-2 rounded-lg ">
-        <Image
-          src={image}
-          alt="Collision icon"
-          width={30}
-          height={30}
-          className=""
-        />
+        {image && (
+          <Image
+            src={image}
+            alt="Collision icon"
+            height={0}
+            width={0}
+            style={{ width: '30px', height: 'auto' }}
+          />
+        )}
       </div>
     </div>
   );

@@ -3,17 +3,37 @@ import { ChangeEvent, useState } from 'react';
 import useDoctorData from '@/app/hooks/useDoctorData';
 import { capitalize } from '@/utils/captalize';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const MainDashboard = () => {
-  const router = useRouter();
-  const [selectedGame, setSelectedGame] = useState<string>('');
-  const [selectedPatient, setSelectedPatient] = useState<string>('');
-  const [selectedSession, setSelectedSession] = useState<string>('');
+  const [selectedGame, setSelectedGame] = useState<string>('maze');
+  const [patientName, setSelectedPatientName] = useState<string>('');
+  const [selectedPatient, setSelectedPatient] = useState<string>(
+    '0VLnT4k4MZVe7l57JSjcTpXDQ8z1'
+  );
+  const [selectedSession, setSelectedSession] = useState<string>('1');
 
   const games = ['maze', 'focus', 'whack', 'trail', 'dualNback'];
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedGame(event.target.value);
+    const { name, value } = event.target;
+
+    switch (name) {
+      case 'patient':
+        setSelectedPatient(value);
+        if (event.target.textContent) {
+          setSelectedPatientName(event.target.textContent);
+        }
+        break;
+      case 'game':
+        setSelectedGame(value);
+        break;
+      case 'session':
+        setSelectedSession(value);
+        break;
+      default:
+        break;
+    }
   };
 
   const doctorData = useDoctorData();
@@ -21,12 +41,12 @@ const MainDashboard = () => {
   return (
     <>
       {/* Patient Select */}
-
       {doctorData ? (
-        <div className="ml-10 mr-5 mb-10 mt-5  flex gap-10">
+        <div className="ml-14 mr-14 mb-10 mt-5  flex gap-10">
           <select
             className="select select-primary min-w-72"
             value={selectedPatient}
+            name="patient"
             onChange={handleChange}
           >
             {doctorData?.patientsData.map((patient, i) => (
@@ -41,6 +61,7 @@ const MainDashboard = () => {
           <select
             className="select select-primary min-w-72"
             value={selectedGame}
+            name="game"
             onChange={handleChange}
           >
             {games.map((game, i) => (
@@ -55,6 +76,7 @@ const MainDashboard = () => {
           <select
             className="select select-primary min-w-72"
             value={selectedSession}
+            name="session"
             onChange={handleChange}
           >
             <option value="1">Session One</option>
@@ -62,13 +84,12 @@ const MainDashboard = () => {
             <option value="3">Session Three</option>
           </select>
 
-          <button
-            className="btn btn-primary text-white"
-            onClick={() => {
-              // router.push();
-            }}
-          >
-            Apply
+          <button className="btn btn-primary text-white">
+            <Link
+              href={`/dashboard?user=${selectedPatient}&game=${selectedGame}&session=${selectedSession}`}
+            >
+              Apply
+            </Link>
           </button>
         </div>
       ) : (

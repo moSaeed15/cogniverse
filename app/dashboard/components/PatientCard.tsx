@@ -14,7 +14,6 @@ const PatientCard = () => {
           <PairText title="Full Name:" text="Mohammed El Saeed" />
           <PairText title="Age:" text="23" />
           <PairText title="Gender:" text="Male" />
-          <PairText title="Mobile:" text="0155 8202011" />
         </div>
         <div className="flex flex-col gap-3">
           <PairText title="Email:" text="mohammed.elsaeed@gmail.com" />

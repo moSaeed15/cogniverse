@@ -11,17 +11,17 @@ import {
 } from 'recharts';
 
 interface Props {
-  tries: { count: string; Time: number }[];
+  chartData: { count: string; Time: number }[];
 }
 
-const LineChartComponent = ({ tries }: Props) => {
+const LineChartComponent = ({ chartData }: Props) => {
   return (
     <div className="bg-welcome rounded-3xl p-7 w-[44%] mt-10 ">
       <LineChart
         width={500}
         height={300}
         className="mt-10 text-white"
-        data={tries}
+        data={chartData}
         margin={{
           top: 5,
           right: 30,
