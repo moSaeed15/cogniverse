@@ -1,24 +1,43 @@
+import { PatientData } from '@/app/hooks/usePatientData';
+import { SessionTime } from './Maze';
 import PairText from './PairText';
 
-const PatientCard = () => {
+interface Props {
+  patientData: PatientData;
+  sessionTime: SessionTime;
+  sessionNumber: number;
+}
+
+const PatientCard = ({ patientData, sessionTime, sessionNumber }: Props) => {
+  const getSessionNumber = (sessionNumber: number): string => {
+    if (sessionNumber === 1) return 'First';
+
+    if (sessionNumber === 2) return 'Second';
+    if (sessionNumber === 3) return 'Third';
+    return '';
+  };
+
   return (
     <div className="bg-patient  rounded-3xl p-7 w-3/4 ">
       <h3 className="text-lg">Patient Information</h3>
       <p className="text-sm text-light-grey mt-3 ">
-        Patient came in on the day of 16/04/2024 and time 15:28 for the first
-        session
+        Patient came in on the day of {sessionTime.date} and time{' '}
+        {sessionTime.time} for the {getSessionNumber(sessionNumber)} session
       </p>
       <div className="custom-divider my-5"></div>
       <div className=" flex gap-10 text-sm ">
-        <div className="flex flex-col gap-3">
-          <PairText title="Full Name:" text="Mohammed El Saeed" />
-          <PairText title="Age:" text="23" />
-          <PairText title="Gender:" text="Male" />
+        <div className="flex flex-col gap-5">
+          <PairText title="Full Name:" text={patientData.name} />
+          <PairText title="Age:" text={String(patientData.age)} />
+          <PairText title="Gender:" text={patientData.gender} />
         </div>
-        <div className="flex flex-col gap-3">
-          <PairText title="Email:" text="mohammed.elsaeed@gmail.com" />
-          <PairText title="Diagnosis:" text="Down Syndrome" />
-          <PairText title="Reinforcment Type:" text="Negative" />
+        <div className="flex flex-col gap-5 ">
+          <PairText title="Email:" text={patientData.email} />
+          <PairText title="Diagnosis:" text={patientData.diagnosis} />
+          <PairText
+            title="Reinforcment Type:"
+            text={patientData.reinforcementType}
+          />
         </div>
       </div>
     </div>

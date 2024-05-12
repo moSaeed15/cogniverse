@@ -7,7 +7,7 @@ import { getSession } from 'next-auth/react';
 import { Session } from 'next-auth';
 import { capitalize } from '@/utils/captalize';
 
-export interface DbPatientData {
+interface DbPatientData {
   id: string;
   name: string;
 }
@@ -78,7 +78,6 @@ const useDoctorData = (): DoctorData | undefined => {
         patientsData: [...patientData],
       };
       setDoctorData(doctorData);
-      // console.log(doctorData);
     };
 
     fetchData();

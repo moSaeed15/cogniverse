@@ -2,16 +2,25 @@
 import { ChangeEvent, useState } from 'react';
 import useDoctorData from '@/app/hooks/useDoctorData';
 import { capitalize } from '@/utils/captalize';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 const MainDashboard = () => {
-  const [selectedGame, setSelectedGame] = useState<string>('maze');
+  const searchParams = useSearchParams();
+  const user = searchParams.get('user');
+  const game = searchParams.get('game');
+  const session = searchParams.get('session');
+
+  const [selectedGame, setSelectedGame] = useState<string>(
+    game ? game : 'maze'
+  );
   const [patientName, setSelectedPatientName] = useState<string>('');
   const [selectedPatient, setSelectedPatient] = useState<string>(
-    '0VLnT4k4MZVe7l57JSjcTpXDQ8z1'
+    user ? user : '0VLnT4k4MZVe7l57JSjcTpXDQ8z1'
   );
-  const [selectedSession, setSelectedSession] = useState<string>('1');
+  const [selectedSession, setSelectedSession] = useState<string>(
+    session ? session : '1'
+  );
 
   const games = ['maze', 'focus', 'whack', 'trail', 'dualNback'];
 
@@ -83,14 +92,11 @@ const MainDashboard = () => {
             <option value="2">Session Two</option>
             <option value="3">Session Three</option>
           </select>
-
-          <button className="btn btn-primary text-white">
-            <Link
-              href={`/dashboard?user=${selectedPatient}&game=${selectedGame}&session=${selectedSession}`}
-            >
-              Apply
-            </Link>
-          </button>
+          <Link
+            href={`/dashboard?user=${selectedPatient}&game=${selectedGame}&session=${selectedSession}`}
+          >
+            <button className="btn btn-primary text-white">Apply</button>{' '}
+          </Link>
         </div>
       ) : (
         <div className="ml-10 mr-5 mb-10  mt-5  flex  gap-10">

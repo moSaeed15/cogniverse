@@ -5,11 +5,7 @@ import { database } from '../FirebaseConfig';
 import { get, ref } from 'firebase/database';
 import { capitalize } from '@/utils/captalize';
 
-interface Props {
-  user: string;
-}
-
-interface PatientData {
+export interface PatientData {
   age: number;
   name: string;
   diagnosis: string;
@@ -30,9 +26,8 @@ const mapReinforcementType = (
   return '';
 };
 
-const usePatientData = ({ user }: Props) => {
+const usePatientData = (user: string): PatientData | null => {
   const [patientData, setPatientData] = useState<null | PatientData>(null);
-
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       const userRef = ref(database, `users/${user}`);
@@ -40,33 +35,43 @@ const usePatientData = ({ user }: Props) => {
       try {
         const snapshot = await get(userRef);
 
-        const userArray: any[] = Object.entries(snapshot.val()).map(
+        const patientArray: any[] = Object.entries(snapshot.val()).map(
           ([key, value]) => ({
             [key]: value,
           })
         );
 
-        const userData: PatientData = {
-          age: userArray[16].age,
+        const patientObject = patientArray.reduce((acc, current) => {
+          const [key, value] = Object.entries(current)[0];
+          return { ...acc, [key]: value };
+        }, {});
+
+        const patientData: PatientData = {
+          age: patientObject.age,
           name:
-            capitalize(userArray[21].firstName) +
-            capitalize(userArray[28].lastName),
-          diagnosis: userArray[17].diagnosis,
-          email: userArray[19].email,
-          gender: userArray[20].femalegender === 'no' ? 'female' : 'male',
+            capitalize(patientObject.firstName) +
+            ' ' +
+            capitalize(patientObject.lastName),
+          diagnosis: patientObject.diagnosis,
+          email: patientObject.email,
+          gender: patientObject.femalegender !== 'no' ? 'Female' : 'Male',
           reinforcementType: mapReinforcementType(
-            userArray[27],
-            userArray[26],
-            userArray[25]
+            patientObject.ispositiveGroup,
+            patientObject.isnegativeGroup,
+            patientObject.iscontrolGroup
           ),
         };
-        console.log(userData);
+
+        setPatientData(patientData);
       } catch (error) {}
     };
 
     fetchData();
-  }, []);
-  // if (patientData) return patientData;
+  }, [user]);
+
+  if (patientData) return patientData;
+
+  return null;
 };
 
 export default usePatientData;

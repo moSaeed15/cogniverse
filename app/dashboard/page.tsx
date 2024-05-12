@@ -11,7 +11,7 @@ interface Props {
 const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
   return (
     <div className="flex px-14 pb-10 ">
-      {game === 'maze' && (
+      {game === 'maze' && session !== '3' && (
         <Maze sessionNumber={Number(session)} game={game} user={user} />
       )}
     </div>
