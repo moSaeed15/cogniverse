@@ -63,7 +63,7 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
 
           const processedData = getProcessedChartData(filteredData);
 
-          setSessionTimeState(filteredData, triesData);
+          setSessionTimeState(filteredData);
           SetTries(triesData);
 
           setChartData(processedData);
