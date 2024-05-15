@@ -1,14 +1,14 @@
-import { MazeObject } from '@/app/types/gameTypes';
+import { DualObject } from '@/app/types/gameTypes';
 
 interface Props {
-  tableData: MazeObject[];
+  tableData: DualObject[];
   tableTitles: string[];
 }
 
-const TrialsData = ({ tableData, tableTitles }: Props) => {
+const TableDualData = ({ tableData, tableTitles }: Props) => {
   return (
-    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 w-[55%] ">
-      <table className="table table-zebra">
+    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 py-14 w-[570px] ">
+      <table className="table table-zebra ">
         <thead>
           <tr className="text-lg text-white font-bold">
             {tableTitles.map((title, index) => (
@@ -21,8 +21,10 @@ const TrialsData = ({ tableData, tableTitles }: Props) => {
             <tr key={index} className="text-gray-300">
               <th>Trial {index + 1}</th>
               <td>{tryItem.time}</td>
-              <td>{tryItem.numberOfHits}</td>
-              <td>{tryItem.overallTime}</td>
+              <td>{tryItem.accuracy.toFixed(3)}</td>
+              <td>{tryItem.goResponseTime.toFixed(3)}</td>
+              <td>{tryItem.noGoResponseTime.toFixed(3)}</td>
+              <td>{+tryItem.scorePercent.toFixed(2) * 100}</td>
             </tr>
           ))}
         </tbody>
@@ -31,4 +33,4 @@ const TrialsData = ({ tableData, tableTitles }: Props) => {
   );
 };
 
-export default TrialsData;
+export default TableDualData;

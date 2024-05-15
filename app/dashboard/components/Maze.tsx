@@ -9,19 +9,18 @@ import { database } from '@/app/FirebaseConfig';
 import LineChartComponent from './LineChartComponent';
 import usePatientData from '@/app/hooks/usePatientData';
 import TrialsData from './TrialsData';
+import { chartData, MazeObject, SessionTime } from '@/app/types/gameTypes';
+import {
+  filterDataBySession,
+  getProcessedChartData,
+  getTotalTime,
+  setSessionTimeState,
+} from '@/utils/dataUtils';
 
 interface Props {
   sessionNumber: number;
   user: string;
   game: string;
-}
-
-export interface MazeObject {
-  date: string;
-  level: number;
-  numberOfHits: number;
-  overallTime: number;
-  time: string;
 }
 
 interface TriesData {
@@ -30,23 +29,13 @@ interface TriesData {
   totalTime: number;
 }
 
-interface chartData {
-  count: string;
-  Time: number;
-}
-
-export interface SessionTime {
-  time: string;
-  date: string;
-}
-
 const Maze = ({ sessionNumber, game, user }: Props) => {
   const [tries, SetTries] = useState<TriesData | null>(null);
   const [tableData, SetTableData] = useState<MazeObject[] | null>(null);
-
   const [chartData, setChartData] = useState<chartData[] | null>(null);
-
   const [sessionTime, setSessionTime] = useState<SessionTime | null>(null);
+
+  const tableTitles = ['Trial Number', 'Time', 'Number of hits', 'Trial time'];
 
   const patientData = usePatientData(user);
 
@@ -60,8 +49,10 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
         if (Gamesnapshot.exists()) {
           const snapshotArr: MazeObject[] = Object.values(Gamesnapshot.val());
 
-          const filteredData = filterDataBySession(snapshotArr);
+          const filteredData = filterDataBySession(sessionNumber, snapshotArr);
+
           SetTableData(filteredData);
+
           const totalTime = getTotalTime(filteredData);
 
           const triesData = {
@@ -72,7 +63,8 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
 
           const processedData = getProcessedChartData(filteredData);
 
-          setSessionTimeAndTries(filteredData, triesData);
+          setSessionTimeState(filteredData, triesData);
+          SetTries(triesData);
 
           setChartData(processedData);
         }
@@ -83,55 +75,6 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
 
     getSessionData();
   }, [game, user, sessionNumber]);
-
-  const filterDataBySession = (snapshotArr: MazeObject[]): MazeObject[] => {
-    if (sessionNumber <= 0 || sessionNumber > snapshotArr.length) {
-      return [];
-    }
-
-    const sessionDates: string[] = [
-      ...new Set(snapshotArr.map(snapshot => snapshot.date)),
-    ];
-    const sessionTimes: string[] = [
-      ...new Set(snapshotArr.map(snapshot => snapshot.time)),
-    ];
-    const sessionDate = sessionDates[sessionNumber - 1];
-    const sessionTime = sessionTimes[sessionNumber - 1];
-
-    return snapshotArr.filter(data => data.date === sessionDate);
-  };
-
-  const getTotalTime = (filteredData: MazeObject[]): number => {
-    return filteredData.reduce((acc, current) => acc + current.overallTime, 0);
-  };
-
-  const getProcessedChartData = (
-    filteredData: MazeObject[]
-  ): { count: string; Time: number }[] => {
-    const processedData = filteredData.map((tryItem, index) => ({
-      count: `trial ${index + 1}`,
-      Time: tryItem.overallTime,
-    }));
-
-    return processedData;
-    // return processedData.sort((a, b) => a.Time - b.Time);
-  };
-
-  const setSessionTimeAndTries = (
-    filteredData: MazeObject[],
-    triesData: any
-  ) => {
-    const firstItem = filteredData[0];
-    const sessionDate = firstItem.date;
-    const sessionTime = firstItem.time;
-
-    setSessionTime({
-      date: sessionDate,
-      time: sessionTime,
-    });
-
-    SetTries(triesData);
-  };
 
   return (
     <>
@@ -171,7 +114,12 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
             /> */}
           </div>
           <div className="flex gap-10 mt-10">
-            <WelcomeCard sessionNumber={sessionNumber} game={game} />
+            <WelcomeCard
+              sessionNumber={sessionNumber}
+              game={game}
+              image="/spark.webp"
+            />
+
             {patientData && sessionTime && (
               <PatientCard
                 patientData={patientData}
@@ -182,7 +130,9 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
           </div>
           <div className="flex gap-10 mt-10">
             {chartData && <LineChartComponent chartData={chartData} />}
-            {tableData && <TrialsData tableData={tableData} />}
+            {tableData && (
+              <TrialsData tableData={tableData} tableTitles={tableTitles} />
+            )}
           </div>
         </div>
       )}

@@ -6,6 +6,7 @@ import Image from 'next/image';
 interface Props {
   sessionNumber: number;
   game: string;
+  image: string;
 }
 
 const getSessionNumber = (sessionNumber: number): string => {
@@ -16,7 +17,21 @@ const getSessionNumber = (sessionNumber: number): string => {
   return '';
 };
 
-const WelcomeCard = ({ sessionNumber, game }: Props) => {
+const getGameName = (game: string): string => {
+  if (game === 'maze') return 'Electrical forest';
+
+  if (game === 'focus') return 'Focus Fusion';
+
+  if (game === 'whack') return 'Cosmic Whack';
+
+  if (game === 'trail') return 'Trail Making';
+
+  if (game === 'dualNback') return 'Potion Recall';
+
+  return '';
+};
+
+const WelcomeCard = ({ sessionNumber, game, image }: Props) => {
   const { status, data: session } = useSession();
 
   if (status === 'loading') return null;
@@ -32,15 +47,20 @@ const WelcomeCard = ({ sessionNumber, game }: Props) => {
             })}
         </h2>
         <p className="text-base">
-          Glad to see you again! You are Viewing{' '}
-          {game === 'maze' && 'Electrical Forest'} statistics
+          Glad to see you again! You are Viewing {getGameName(game)} statistics
         </p>
         <span className="font-bold ">
           Session {getSessionNumber(sessionNumber)}
         </span>
       </div>
 
-      <Image src="/Spark.webp" alt="" width={300} height={300} priority />
+      <Image
+        src={image}
+        alt={image.slice(1, -5)}
+        width={300}
+        height={300}
+        priority
+      />
     </div>
   );
 };
