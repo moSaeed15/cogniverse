@@ -1,24 +1,13 @@
 'use client';
 
+import useGameData from '@/app/hooks/useGameData';
+import usePatientData from '@/app/hooks/usePatientData';
+import { MazeObject } from '@/app/types/gameTypes';
+import LineChartComponent from '../LineChartComponent';
 import PatientCard from '../PatientCard';
 import WelcomeCard from '../WelcomeCard';
-import StatusCard from '../StatusCard';
-import { useEffect, useState } from 'react';
-import { get, ref } from 'firebase/database';
-import { database } from '@/app/FirebaseConfig';
-import LineChartComponent from '../LineChartComponent';
-import usePatientData from '@/app/hooks/usePatientData';
-import TrialsData from './TrialsData';
-import { chartData, MazeObject, SessionTime } from '@/app/types/gameTypes';
-import {
-  filterDataBySession,
-  getProcessedChartData,
-  getTotalTime,
-  setSessionTimeState,
-} from '@/utils/dataUtils';
 import MazeStatusCardGroup from './MazeStatusCardGroup';
-import useMazeData from '@/app/hooks/useGameData';
-import useGameData from '@/app/hooks/useGameData';
+import TrialsData from './TrialsData';
 
 interface Props {
   sessionNumber: number;

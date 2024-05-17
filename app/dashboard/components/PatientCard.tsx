@@ -1,6 +1,6 @@
 import { PatientData } from '@/app/hooks/usePatientData';
-import { SessionTime } from './Maze/Maze';
 import PairText from './PairText';
+import { SessionTime } from '@/app/types/gameTypes';
 
 interface Props {
   patientData: PatientData;

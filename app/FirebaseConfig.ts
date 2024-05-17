@@ -3,7 +3,7 @@ import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBvZrZP-Ogbm1k8ZtlSaAPoi9JXSgqQYAk',
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: 'cogniverse-e330a.firebaseapp.com',
   databaseURL: 'https://cogniverse-e330a-default-rtdb.firebaseio.com',
   projectId: 'cogniverse-e330a',

@@ -67,7 +67,7 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
         {!isLoading && (
           <PatientCard
             patientData={patientData!}
-            sessionTime={sessionTime}
+            sessionTime={sessionTime!}
             sessionNumber={sessionNumber}
           />
         )}

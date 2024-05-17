@@ -2,6 +2,7 @@ import NavBar from './components/NavBar';
 import Sidebar from './components/Sidebar';
 import MainDashboard from './components/MainDashboard';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 export default function DashboardLayout({
   children,
@@ -20,7 +21,9 @@ export default function DashboardLayout({
       <Sidebar />
       <div className="flex flex-col w-full">
         <NavBar />
-        <MainDashboard />
+        <Suspense>
+          <MainDashboard />
+        </Suspense>
         {children}
       </div>
     </div>
