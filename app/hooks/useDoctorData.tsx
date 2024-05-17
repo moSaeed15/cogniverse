@@ -67,6 +67,13 @@ const useDoctorData = (): DoctorData | undefined => {
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
+      const cachedDoctorData = sessionStorage.getItem('doctorData');
+
+      if (cachedDoctorData) {
+        setDoctorData(JSON.parse(cachedDoctorData));
+        return;
+      }
+
       const userID = await getDoctor();
       if (!userID) return;
 
@@ -77,6 +84,9 @@ const useDoctorData = (): DoctorData | undefined => {
         id: userID,
         patientsData: [...patientData],
       };
+
+      sessionStorage.setItem('doctorData', JSON.stringify(doctorData));
+
       setDoctorData(doctorData);
     };
 

@@ -1,5 +1,5 @@
 import { PatientData } from '@/app/hooks/usePatientData';
-import { SessionTime } from './Maze';
+import { SessionTime } from './Maze/Maze';
 import PairText from './PairText';
 
 interface Props {
@@ -18,7 +18,7 @@ const PatientCard = ({ patientData, sessionTime, sessionNumber }: Props) => {
   };
 
   return (
-    <div className="bg-patient  rounded-3xl p-7 w-3/4 ">
+    <div className="bg-patient  rounded-3xl p-7  mr-5">
       <h3 className="text-lg">Patient Information</h3>
       <p className="text-sm text-light-grey mt-3 ">
         Patient came in on the day of {sessionTime.date} and time{' '}

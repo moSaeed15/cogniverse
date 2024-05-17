@@ -2,9 +2,10 @@ export interface GameObject {
   date: string;
   time: string;
   overallTime: number;
+  level: number;
 }
 
-export interface DualObject extends GameObject {
+export interface SharedGameObject extends GameObject {
   accuracy: number;
   goResponseTime: number;
   noGoResponseTime: number;
@@ -12,7 +13,6 @@ export interface DualObject extends GameObject {
 }
 
 export interface MazeObject extends GameObject {
-  level: number;
   numberOfHits: number;
 }
 
@@ -24,4 +24,14 @@ export interface SessionTime {
 export interface chartData {
   count: string;
   Time: number;
+}
+
+export interface TriesData {
+  numberOfHits?: number;
+  accuracy?: number;
+  numberOfTrials: number;
+  totalTime: number;
+  goResponseTime?: number;
+  noGoResponseTime?: number;
+  scorePercent?: number;
 }

@@ -1,5 +1,6 @@
-import Daul from './components/Dual';
-import Maze from './components/Maze';
+import Daul from './components/Dual/Dual';
+import Focus from './components/Focus/Focus';
+import Maze from './components/Maze/Maze';
 
 interface Props {
   searchParams: {
@@ -11,13 +12,16 @@ interface Props {
 
 const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
   return (
-    <div className="flex px-14 pb-10 ">
+    <div className="flex pl-14 pb-10 ">
       {game === 'maze' && session !== '3' && (
         <Maze sessionNumber={Number(session)} game={game} user={user} />
       )}
 
       {game === 'dualNback' && (
         <Daul sessionNumber={Number(session)} game={game} user={user} />
+      )}
+      {game === 'focus' && (
+        <Focus sessionNumber={Number(session)} game={game} user={user} />
       )}
     </div>
   );

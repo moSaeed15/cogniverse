@@ -1,13 +1,13 @@
-import { DualObject } from '@/app/types/gameTypes';
+import { SharedGameObject } from '@/app/types/gameTypes';
 
 interface Props {
-  tableData: DualObject[];
+  tableData: SharedGameObject[];
   tableTitles: string[];
 }
 
-const TableDualData = ({ tableData, tableTitles }: Props) => {
+const TableGamesData = ({ tableData, tableTitles }: Props) => {
   return (
-    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 py-14 w-[570px] ">
+    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 py-16 ">
       <table className="table table-zebra ">
         <thead>
           <tr className="text-lg text-white font-bold">
@@ -33,4 +33,4 @@ const TableDualData = ({ tableData, tableTitles }: Props) => {
   );
 };
 
-export default TableDualData;
+export default TableGamesData;
