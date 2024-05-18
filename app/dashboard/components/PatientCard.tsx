@@ -1,5 +1,5 @@
 import { PatientData } from '@/app/hooks/usePatientData';
-import PairText from './PairText';
+import PairText from '../../../components/PairText';
 import { SessionTime } from '@/app/types/gameTypes';
 
 interface Props {

@@ -7,6 +7,7 @@ import {
   chartData,
   SharedGameObject,
   TriesData,
+  TrailGameObject,
 } from '@/app/types/gameTypes';
 
 import {
@@ -16,7 +17,7 @@ import {
   setSessionTimeState,
 } from '@/utils/dataUtils';
 
-const useGameData = <T extends MazeObject | SharedGameObject>(
+const useGameData = <T extends MazeObject | SharedGameObject | TrailGameObject>(
   user: string,
   sessionNumber: number,
   game: string
@@ -37,6 +38,8 @@ const useGameData = <T extends MazeObject | SharedGameObject>(
           const snapshotArr: T[] = Object.values(Gamesnapshot.val());
           const filteredData = filterDataBySession(sessionNumber, snapshotArr);
 
+          console.log(filteredData);
+
           setTableData(filteredData);
 
           const totalTime = getTotalTime(filteredData);
@@ -47,6 +50,9 @@ const useGameData = <T extends MazeObject | SharedGameObject>(
             numberOfTrials: filteredData.length,
             ...('numberOfHits' in lastTrial && {
               numberOfHits: lastTrial.numberOfHits,
+            }),
+            ...('numberOfMistakes' in lastTrial && {
+              numberOfMistakes: lastTrial.numberOfMistakes,
             }),
             ...('accuracy' in lastTrial && {
               accuracy: lastTrial.accuracy * 100,

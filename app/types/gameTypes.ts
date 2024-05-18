@@ -12,6 +12,12 @@ export interface SharedGameObject extends GameObject {
   scorePercent: number;
 }
 
+export interface TrailGameObject extends GameObject {
+  accuracy: number;
+  numberOfMistakes: number;
+  scorePercent: number;
+}
+
 export interface MazeObject extends GameObject {
   numberOfHits: number;
 }
@@ -26,6 +32,11 @@ export interface chartData {
   Time: number;
 }
 
+export interface accuracyChartData {
+  count: string;
+  accuracy: number;
+}
+
 export interface TriesData {
   numberOfHits?: number;
   accuracy?: number;
@@ -34,4 +45,5 @@ export interface TriesData {
   goResponseTime?: number;
   noGoResponseTime?: number;
   scorePercent?: number;
+  numberOfMistakes?: number;
 }

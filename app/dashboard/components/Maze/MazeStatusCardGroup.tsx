@@ -9,13 +9,11 @@ interface Props {
 const MazeStatusCardGroup = ({ tries }: Props) => {
   return (
     <div className=" grid grid-cols-4 gap-8 mt-7 ">
-      {tries.numberOfHits && (
-        <StatusCard
-          title="Number of hits"
-          image="/crash.svg"
-          number={tries.numberOfHits}
-        />
-      )}
+      <StatusCard
+        title="Number of hits"
+        image="/crash.svg"
+        number={tries.numberOfHits!}
+      />
 
       <StatusCard
         title="Number of trials"

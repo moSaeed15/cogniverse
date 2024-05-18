@@ -1,13 +1,15 @@
 'use client';
-import GameMetrics from '../GameMetrics';
-import TableGamesData from '../TableGamesData';
 import PatientCard from '../PatientCard';
 import StatusCard from '../StatusCard';
 import WelcomeCard from '../WelcomeCard';
 import usePatientData from '@/app/hooks/usePatientData';
 import useGameData from '@/app/hooks/useGameData';
-import { SharedGameObject } from '@/app/types/gameTypes';
+import { accuracyChartData, TrailGameObject } from '@/app/types/gameTypes';
 import { useEffect, useState } from 'react';
+import TrailTableData from './TrailTableData';
+import LineChartComponent from '../../../../components/LineChartComponent';
+import TrailGameMetrics from './TrailGameMetrics';
+import AccuracyChartData from '@/components/AccuracyChartData';
 
 interface Props {
   sessionNumber: number;
@@ -15,30 +17,50 @@ interface Props {
   game: string;
 }
 
-const Whack = ({ sessionNumber, game, user }: Props) => {
+const Trail = ({ sessionNumber, game, user }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [accuracyChartData, setAccuracyChartData] = useState<
+    accuracyChartData[] | null
+  >(null);
   const patientData = usePatientData(user);
 
   const { tries, tableData, chartData, sessionTime } =
-    useGameData<SharedGameObject>(user, sessionNumber, game);
+    useGameData<TrailGameObject>(user, sessionNumber, game);
 
   const tableTitles = [
     'Trial No.',
     'Time',
     'Accuracy',
-    'Go response time',
-    'No Go Response Time',
+    'overallTime',
     'Score Percent',
+    'Number of Mistakes',
   ];
 
   useEffect(() => {
+    const getProcessedAccuracyChartData = (filteredData: TrailGameObject[]) => {
+      console.log(filteredData);
+      const processedData = filteredData.map((tryItem, index) => ({
+        count: `trial ${index + 1}`,
+        accuracy: tryItem.accuracy,
+      }));
+      setAccuracyChartData(processedData);
+    };
     if (tries && tableData && chartData && sessionTime) {
       setIsLoading(false);
+      getProcessedAccuracyChartData(tableData);
     }
   }, [tries, tableData, chartData, sessionTime]);
+
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden mr-5">
       <div className=" grid grid-cols-4 gap-8 mt-7 ">
+        {!isLoading && (
+          <StatusCard
+            title="Number of Mistakes"
+            image="/failed.svg"
+            number={tries?.numberOfMistakes!}
+          />
+        )}
         {!isLoading && (
           <StatusCard
             title="Number of trials"
@@ -60,7 +82,7 @@ const Whack = ({ sessionNumber, game, user }: Props) => {
           <WelcomeCard
             sessionNumber={sessionNumber}
             game={game}
-            image="/ufo.webp"
+            image="/gun.webp"
           />
         )}
 
@@ -73,22 +95,25 @@ const Whack = ({ sessionNumber, game, user }: Props) => {
         )}
       </div>
       <div className="grid grid-cols-2  gap-10 mt-10 ">
-        {/* {chartData && <LineChartComponent chartData={chartData} />} */}
         {!isLoading && (
-          <TableGamesData tableData={tableData!} tableTitles={tableTitles} />
+          <TrailTableData tableData={tableData!} tableTitles={tableTitles} />
         )}
 
         {!isLoading && (
-          <GameMetrics
+          <TrailGameMetrics
             accuracy={tries?.accuracy!}
             scorePercent={tries?.scorePercent!}
-            goResponseTime={tries?.goResponseTime!}
-            noGoResponseTime={tries?.noGoResponseTime!}
           />
+        )}
+      </div>
+      <div className="grid grid-cols-2 gap-10 mt-10">
+        {chartData && <LineChartComponent chartData={chartData} />}
+        {accuracyChartData && (
+          <AccuracyChartData accuracyChartData={accuracyChartData} />
         )}
       </div>
     </div>
   );
 };
 
-export default Whack;
+export default Trail;

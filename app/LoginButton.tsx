@@ -8,7 +8,7 @@ const LoginButton = () => {
     <button
       onClick={() => {
         signIn('google', {
-          callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard`,
+          callbackUrl: `http://localhost:3000/dashboard`,
         });
       }}
       className="flex items-center w-1/2 mt-5 justify-center border-2 border-gray-300 rounded-md shadow-sm py-2 px-4 text-base gap-5 focus:outline-none focus:ring-2  focus:ring-indigo-500 focus:border-indigo-500 "

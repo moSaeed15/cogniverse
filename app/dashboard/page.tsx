@@ -1,6 +1,8 @@
 import Daul from './components/Dual/Dual';
 import Focus from './components/Focus/Focus';
 import Maze from './components/Maze/Maze';
+import Trail from './components/Trail/Trail';
+import Whack from './components/Whack/Whack';
 
 interface Props {
   searchParams: {
@@ -13,7 +15,7 @@ interface Props {
 const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
   return (
     <div className="flex pl-14 pb-10 ">
-      {game === 'maze' && session !== '3' && (
+      {game === 'maze' && (
         <Maze sessionNumber={Number(session)} game={game} user={user} />
       )}
 
@@ -22,6 +24,14 @@ const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
       )}
       {game === 'focus' && (
         <Focus sessionNumber={Number(session)} game={game} user={user} />
+      )}
+
+      {game === 'whack' && (
+        <Whack sessionNumber={Number(session)} game={game} user={user} />
+      )}
+
+      {game === 'trail' && (
+        <Trail sessionNumber={Number(session)} game={game} user={user} />
       )}
     </div>
   );

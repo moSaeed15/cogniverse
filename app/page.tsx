@@ -1,5 +1,5 @@
-import Image from "next/image";
-import LoginButton from "./LoginButton";
+import Image from 'next/image';
+import LoginButton from '@/app/LoginButton';
 
 const Login = () => {
   return (

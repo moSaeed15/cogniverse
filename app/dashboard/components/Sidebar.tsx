@@ -3,7 +3,7 @@ import DashboardMenu from './DashboardMenu';
 import { CiLogout } from 'react-icons/ci';
 import Link from 'next/link';
 import Image from 'next/image';
-import LogoutButton from './LogoutButton';
+import LogoutButton from '../../../components/LogoutButton';
 
 const Sidebar = () => {
   return (

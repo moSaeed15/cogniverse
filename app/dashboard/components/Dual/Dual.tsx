@@ -1,24 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
 import WelcomeCard from '../WelcomeCard';
-import { database } from '@/app/FirebaseConfig';
-import { get, ref } from 'firebase/database';
 import PatientCard from '../PatientCard';
 import usePatientData from '@/app/hooks/usePatientData';
-import ProgressBar from '@/components/ProgressBar';
 
-import {
-  filterDataBySession,
-  getProcessedChartData,
-  getTotalTime,
-  setSessionTimeState,
-} from '../../../../utils/dataUtils';
-
-import {
-  chartData,
-  SharedGameObject,
-  SessionTime,
-} from '@/app/types/gameTypes';
+import { SharedGameObject } from '@/app/types/gameTypes';
 import TableGamesData from '../TableGamesData';
 import StatusCard from '../StatusCard';
 import useGameData from '@/app/hooks/useGameData';

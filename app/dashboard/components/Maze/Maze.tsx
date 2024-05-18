@@ -3,7 +3,7 @@
 import useGameData from '@/app/hooks/useGameData';
 import usePatientData from '@/app/hooks/usePatientData';
 import { MazeObject } from '@/app/types/gameTypes';
-import LineChartComponent from '../LineChartComponent';
+import LineChartComponent from '../../../../components/LineChartComponent';
 import PatientCard from '../PatientCard';
 import WelcomeCard from '../WelcomeCard';
 import MazeStatusCardGroup from './MazeStatusCardGroup';
@@ -32,7 +32,7 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
       {tries && (
         <div>
           {tries && <MazeStatusCardGroup tries={tries} />}
-          <div className="flex gap-10 mt-10">
+          <div className="grid grid-cols-2 gap-10 mt-10">
             <WelcomeCard
               sessionNumber={sessionNumber}
               game={game}
@@ -47,7 +47,7 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
               />
             )}
           </div>
-          <div className="flex gap-10 mt-10">
+          <div className="grid grid-cols-2 gap-10 mt-10 mr-5">
             {chartData && <LineChartComponent chartData={chartData} />}
             {tableData && (
               <TrialsData tableData={tableData} tableTitles={tableTitles} />

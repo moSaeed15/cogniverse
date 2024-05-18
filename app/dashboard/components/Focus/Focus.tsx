@@ -6,8 +6,10 @@ import StatusCard from '../StatusCard';
 import WelcomeCard from '../WelcomeCard';
 import usePatientData from '@/app/hooks/usePatientData';
 import useGameData from '@/app/hooks/useGameData';
-import { SharedGameObject } from '@/app/types/gameTypes';
+import { accuracyChartData, SharedGameObject } from '@/app/types/gameTypes';
 import { useEffect, useState } from 'react';
+import LineChartComponent from '@/components/LineChartComponent';
+import AccuracyChartData from '@/components/AccuracyChartData';
 
 interface Props {
   sessionNumber: number;
@@ -17,6 +19,9 @@ interface Props {
 
 const Focus = ({ sessionNumber, game, user }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [accuracyChartData, setAccuracyChartData] = useState<
+    accuracyChartData[] | null
+  >(null);
   const patientData = usePatientData(user);
 
   const { tries, tableData, chartData, sessionTime } =
@@ -32,10 +37,22 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
   ];
 
   useEffect(() => {
+    const getProcessedAccuracyChartData = (
+      filteredData: SharedGameObject[]
+    ) => {
+      console.log(filteredData);
+      const processedData = filteredData.map((tryItem, index) => ({
+        count: `trial ${index + 1}`,
+        accuracy: tryItem.accuracy,
+      }));
+      setAccuracyChartData(processedData);
+    };
     if (tries && tableData && chartData && sessionTime) {
       setIsLoading(false);
+      getProcessedAccuracyChartData(tableData);
     }
   }, [tries, tableData, chartData, sessionTime]);
+
   return (
     <div className="overflow-hidden">
       <div className=" grid grid-cols-4 gap-8 mt-7 ">
@@ -73,7 +90,6 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
         )}
       </div>
       <div className="grid grid-cols-2  gap-10 mt-10 ">
-        {/* {chartData && <LineChartComponent chartData={chartData} />} */}
         {!isLoading && (
           <TableGamesData tableData={tableData!} tableTitles={tableTitles} />
         )}
@@ -85,6 +101,11 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
             goResponseTime={tries?.goResponseTime!}
             noGoResponseTime={tries?.noGoResponseTime!}
           />
+        )}
+      </div>
+      <div className="grid grid-cols-2  gap-10 mt-10 ">
+        {accuracyChartData && (
+          <AccuracyChartData accuracyChartData={accuracyChartData} />
         )}
       </div>
     </div>

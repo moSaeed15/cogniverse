@@ -1,14 +1,14 @@
-import { MazeObject } from '@/app/types/gameTypes';
+import { TrailGameObject } from '@/app/types/gameTypes';
 
 interface Props {
-  tableData: MazeObject[];
+  tableData: TrailGameObject[];
   tableTitles: string[];
 }
 
-const TrialsData = ({ tableData, tableTitles }: Props) => {
+const TrailTableData = ({ tableData, tableTitles }: Props) => {
   return (
-    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 ">
-      <table className="table table-zebra">
+    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 py-16 max-h-96">
+      <table className="table table-zebra ">
         <thead>
           <tr className="text-lg text-white font-bold">
             {tableTitles.map((title, index) => (
@@ -21,8 +21,10 @@ const TrialsData = ({ tableData, tableTitles }: Props) => {
             <tr key={index} className="text-gray-300">
               <th>Trial {index + 1}</th>
               <td>{tryItem.time}</td>
-              <td>{tryItem.numberOfHits}</td>
-              <td>{tryItem.overallTime}</td>
+              <td>{tryItem.accuracy.toFixed(3)}</td>
+              <td>{tryItem.overallTime.toFixed(3)}</td>
+              <td>{+tryItem.scorePercent.toFixed(2) * 100}</td>
+              <td>{+tryItem.numberOfMistakes.toFixed(2) * 100}</td>
             </tr>
           ))}
         </tbody>
@@ -31,4 +33,4 @@ const TrialsData = ({ tableData, tableTitles }: Props) => {
   );
 };
 
-export default TrialsData;
+export default TrailTableData;
