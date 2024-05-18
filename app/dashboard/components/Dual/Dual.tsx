@@ -50,7 +50,7 @@ const Dual = ({ sessionNumber, game, user }: Props) => {
             />
           )}
         </div>
-        <div className="grid grid-cols-2 gap-10 mt-10">
+        <div className="grid grid-cols-2 gap-5 mt-10">
           <WelcomeCard
             sessionNumber={sessionNumber}
             game={game}
@@ -64,7 +64,7 @@ const Dual = ({ sessionNumber, game, user }: Props) => {
             />
           )}
         </div>
-        <div className="grid grid-cols-2  gap-10 mt-10 ">
+        <div className="grid grid-cols-2  gap-5 mt-10 ">
           {/* {chartData && <LineChartComponent chartData={chartData} />} */}
           {tableData && (
             <TableGamesData tableData={tableData} tableTitles={tableTitles} />

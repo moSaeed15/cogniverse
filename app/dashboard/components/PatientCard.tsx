@@ -18,14 +18,14 @@ const PatientCard = ({ patientData, sessionTime, sessionNumber }: Props) => {
   };
 
   return (
-    <div className="bg-patient  rounded-3xl p-7  mr-5">
+    <div className="bg-patient  rounded-3xl p-7  ">
       <h3 className="text-lg">Patient Information</h3>
       <p className="text-sm text-light-grey mt-3 ">
         Patient came in on the day of {sessionTime.date} and time{' '}
         {sessionTime.time} for the {getSessionNumber(sessionNumber)} session
       </p>
       <div className="custom-divider my-5"></div>
-      <div className=" flex gap-10 text-sm ">
+      <div className=" flex gap-5 text-sm ">
         <div className="flex flex-col gap-5">
           <PairText title="Full Name:" text={patientData.name} />
           <PairText title="Age:" text={String(patientData.age)} />

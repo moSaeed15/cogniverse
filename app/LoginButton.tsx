@@ -13,6 +13,7 @@ const LoginButton = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
+      console.log('authenticated');
       if (status === 'authenticated') {
         try {
           const datas = await getDocs(collection(db, 'allowedEmails'));

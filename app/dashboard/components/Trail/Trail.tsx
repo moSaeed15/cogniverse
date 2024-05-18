@@ -52,7 +52,7 @@ const Trail = ({ sessionNumber, game, user }: Props) => {
   }, [tries, tableData, chartData, sessionTime]);
 
   return (
-    <div className="overflow-hidden mr-5">
+    <div className="overflow-hidden ">
       <div className=" grid grid-cols-4 gap-8 mt-7 ">
         {!isLoading && (
           <StatusCard
@@ -77,7 +77,7 @@ const Trail = ({ sessionNumber, game, user }: Props) => {
           />
         )}
       </div>
-      <div className="grid grid-cols-2 gap-10 mt-10">
+      <div className="grid grid-cols-2 gap-5 mt-10">
         {!isLoading && (
           <WelcomeCard
             sessionNumber={sessionNumber}
@@ -94,7 +94,7 @@ const Trail = ({ sessionNumber, game, user }: Props) => {
           />
         )}
       </div>
-      <div className="grid grid-cols-2  gap-10 mt-10 ">
+      <div className="grid grid-cols-2  gap-5 mt-10 ">
         {!isLoading && (
           <TrailTableData tableData={tableData!} tableTitles={tableTitles} />
         )}
@@ -106,7 +106,7 @@ const Trail = ({ sessionNumber, game, user }: Props) => {
           />
         )}
       </div>
-      <div className="grid grid-cols-2 gap-10 mt-10">
+      <div className="grid grid-cols-2 gap-5 mt-10">
         {chartData && <LineChartComponent chartData={chartData} />}
         {accuracyChartData && (
           <AccuracyChartData accuracyChartData={accuracyChartData} />

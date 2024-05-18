@@ -50,7 +50,7 @@ const MainDashboard = () => {
     <>
       {/* Patient Select */}
       {doctorData ? (
-        <div className="ml-14 mr-14 mb-10 mt-5  flex gap-10">
+        <div className="ml-14 mr-14 mb-10 mt-5  flex gap-5">
           <select
             className="select select-primary min-w-72"
             value={selectedPatient}
@@ -98,7 +98,7 @@ const MainDashboard = () => {
           </Link>
         </div>
       ) : (
-        <div className="ml-10 mr-5 mb-10  mt-5  flex  gap-10">
+        <div className="ml-10  mb-10  mt-5  flex  gap-5">
           <div className="skeleton w-64 h-12"></div>
           <div className="skeleton w-64 h-12"></div>
           <div className="skeleton w-64 h-12"></div>
