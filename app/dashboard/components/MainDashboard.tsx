@@ -46,7 +46,6 @@ const MainDashboard = () => {
   };
 
   const doctorData = useDoctorData();
-
   return (
     <>
       {/* Patient Select */}

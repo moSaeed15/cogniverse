@@ -7,7 +7,10 @@ export const config = { matcher: ['/dashboard/:path*'] };
 
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
-  if (!token && process.env.NEXTAUTH_URL) {
-    return NextResponse.redirect(process.env.NEXTAUTH_URL);
+
+  if (!token) {
+    return NextResponse.redirect(
+      'https://cogniverse-ky601sa32-mosaeed15s-projects.vercel.app/'
+    );
   }
 }
