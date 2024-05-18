@@ -3,6 +3,7 @@ import { FirestoreAdapter } from '@auth/firebase-adapter';
 import { cert } from 'firebase-admin/app';
 import GoogleProvider from 'next-auth/providers/google';
 import { Adapter } from 'next-auth/adapters';
+import { JWT } from 'next-auth/jwt';
 
 const authOptions = {
   providers: [
@@ -11,6 +12,13 @@ const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
+  callbacks: {
+    async session({ session, token }: { session: any; token: JWT; user: any }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.accessToken = token.accessToken;
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth({
