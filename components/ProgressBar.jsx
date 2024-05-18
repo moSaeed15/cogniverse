@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 const ProgressBar = ({ progress, label }) => {
   const [progressAnimiationValue, setprogressAnimiationValue] = useState(0);
-
+  if (progress > 100) {
+    progress = 100;
+  }
   useEffect(() => {
     const timer = setInterval(() => {
       if (progressAnimiationValue < progress) {
