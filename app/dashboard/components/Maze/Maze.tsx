@@ -36,7 +36,7 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
             <WelcomeCard
               sessionNumber={sessionNumber}
               game={game}
-              image="/spark.webp"
+              image="/Spark.webp"
             />
 
             {patientData && sessionTime && (
