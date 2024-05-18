@@ -5,14 +5,12 @@ import { CiLogout } from 'react-icons/ci';
 
 const LogoutButton = () => {
   return (
-    <Link href="/">
-      <button
-        onClick={() => signOut()}
-        className="btn bg-brand-red hover:bg-red-600 text-white mt-auto transition-colors "
-      >
-        <CiLogout size={20} color="white" /> Log out
-      </button>
-    </Link>
+    <button
+      onClick={() => signOut({ callbackUrl: '/' })}
+      className="btn bg-brand-red hover:bg-red-600 text-white mt-auto transition-colors "
+    >
+      <CiLogout size={20} color="white" /> Log out
+    </button>
   );
 };
 

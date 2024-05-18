@@ -26,7 +26,6 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
     game
   );
 
-  console.log(tries, tableData, chartData, sessionTime);
   return (
     <>
       {tries && (

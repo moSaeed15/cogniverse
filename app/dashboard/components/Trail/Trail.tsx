@@ -38,7 +38,6 @@ const Trail = ({ sessionNumber, game, user }: Props) => {
 
   useEffect(() => {
     const getProcessedAccuracyChartData = (filteredData: TrailGameObject[]) => {
-      console.log(filteredData);
       const processedData = filteredData.map((tryItem, index) => ({
         count: `trial ${index + 1}`,
         accuracy: tryItem.accuracy,

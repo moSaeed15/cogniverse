@@ -38,8 +38,6 @@ const useGameData = <T extends MazeObject | SharedGameObject | TrailGameObject>(
           const snapshotArr: T[] = Object.values(Gamesnapshot.val());
           const filteredData = filterDataBySession(sessionNumber, snapshotArr);
 
-          console.log(filteredData);
-
           setTableData(filteredData);
 
           const totalTime = getTotalTime(filteredData);

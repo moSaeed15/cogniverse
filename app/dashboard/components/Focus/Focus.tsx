@@ -40,7 +40,6 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
     const getProcessedAccuracyChartData = (
       filteredData: SharedGameObject[]
     ) => {
-      console.log(filteredData);
       const processedData = filteredData.map((tryItem, index) => ({
         count: `trial ${index + 1}`,
         accuracy: tryItem.accuracy,
