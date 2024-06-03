@@ -1,36 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Game Data Dashboard
 
-## Getting Started
+The Game Data Dashboard is a project developed as part of my graduation project. It serves as a tool for doctors to access and analyze game data of their patients. Through this dashboard, doctors can log in to their accounts and view data related to their assigned patients. The dashboard allows filtering of data based on the game played and the number of sessions, which in turn influences the UI representation of the data, presented in tabular, numeric, and graphical forms.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **User Authentication**: Utilizing NextAuth.js in combination with Firebase, the dashboard provides secure authentication using Google OAuth.
+- **Data Filtering**: Users can filter patient data based on the game played and the number of sessions, facilitating a customized view of relevant information.
+- **Data Representation**: The dashboard presents data in various forms, including tabular, numeric, and graphical representations, offering flexibility in data analysis.
+- **Tech Stack**: Built using Next.js and Tailwind CSS, with TypeScript integration for enhanced type-safety and reduced potential bugs.
+- **Firebase Integration**: Integrated with Firebase to retrieve user-specific data based on applied filters, ensuring real-time access to relevant information.
