@@ -1,5 +1,5 @@
-![cogniverse-rho vercel app_](https://github.com/moSaeed15/cogniverse/assets/67608414/3d15122f-9c0f-42f5-804d-4155b9fc169e)# Game Data Dashboard
 
+![cogniverse-rho vercel app_ (1)](https://github.com/moSaeed15/cogniverse/assets/67608414/2e0b6ade-e1da-451b-92c6-0907cd55395d)
 The Game Data Dashboard is a project developed as part of my graduation project. It serves as a tool for doctors to access and analyze game data of their patients. Through this dashboard, doctors can log in to their accounts and view data related to their assigned patients. The dashboard allows filtering of data based on the game played and the number of sessions, which in turn influences the UI representation of the data, presented in tabular, numeric, and graphical forms.
 
 ## Features
@@ -10,4 +10,4 @@ The Game Data Dashboard is a project developed as part of my graduation project.
 - **Tech Stack**: Built using Next.js and Tailwind CSS, with TypeScript integration for enhanced type-safety and reduced potential bugs.
 - **Firebase Integration**: Integrated with Firebase to retrieve user-specific data based on applied filters, ensuring real-time access to relevant information.
 
-![cogniverse-rho vercel app_dashboard_user=x8Y8rnE0EEWaxbRiNpQpDU3KUNl1 game=maze session=1](https://github.com/moSaeed15/cogniverse/assets/67608414/46a56672-96fd-4ae3-9de8-71a71c795d9f)
+![cogniverse-rho vercel app_](https://github.com/moSaeed15/cogniverse/assets/67608414/5e5234ae-4585-4f60-ae8f-c9ad717ba046)
