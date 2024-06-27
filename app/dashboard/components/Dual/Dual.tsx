@@ -33,7 +33,7 @@ const Dual = ({ sessionNumber, game, user }: Props) => {
   return (
     <>
       <div className="overflow-hidden">
-        <div className=" grid grid-cols-4 gap-8 mt-7 ">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-7 ">
           {tries && (
             <StatusCard
               title="Number of trials"
@@ -50,7 +50,7 @@ const Dual = ({ sessionNumber, game, user }: Props) => {
             />
           )}
         </div>
-        <div className="grid grid-cols-2 gap-5 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
           <WelcomeCard
             sessionNumber={sessionNumber}
             game={game}
@@ -63,8 +63,7 @@ const Dual = ({ sessionNumber, game, user }: Props) => {
               sessionNumber={sessionNumber}
             />
           )}
-        </div>
-        <div className="grid grid-cols-2  gap-5 mt-10 ">
+
           {/* {chartData && <LineChartComponent chartData={chartData} />} */}
           {tableData && (
             <TableGamesData tableData={tableData} tableTitles={tableTitles} />

@@ -7,7 +7,7 @@ interface Props {
 
 const TrialsData = ({ tableData, tableTitles }: Props) => {
   return (
-    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 ">
+    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 lg:col-span-1 col-span-2">
       <table className="table table-zebra">
         <thead>
           <tr className="text-lg text-white font-bold">

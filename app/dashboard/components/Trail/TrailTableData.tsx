@@ -7,7 +7,7 @@ interface Props {
 
 const TrailTableData = ({ tableData, tableTitles }: Props) => {
   return (
-    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 py-16 max-h-96">
+    <div className="overflow-x-auto bg-welcome rounded-3xl p-10 py-16 max-h-96 lg:col-span-1 col-span-2">
       <table className="table table-zebra ">
         <thead>
           <tr className="text-lg text-white font-bold">

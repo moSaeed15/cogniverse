@@ -31,7 +31,7 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
       {tries && (
         <div>
           {tries && <MazeStatusCardGroup tries={tries} />}
-          <div className="grid grid-cols-2 gap-5 mt-10">
+          <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
             <WelcomeCard
               sessionNumber={sessionNumber}
               game={game}
@@ -45,12 +45,10 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
                 sessionNumber={sessionNumber}
               />
             )}
-          </div>
-          <div className="grid grid-cols-2 gap-5 mt-10 ">
-            {chartData && <LineChartComponent chartData={chartData} />}
             {tableData && (
               <TrialsData tableData={tableData} tableTitles={tableTitles} />
             )}
+            {chartData && <LineChartComponent chartData={chartData} />}
           </div>
         </div>
       )}
