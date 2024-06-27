@@ -58,7 +58,12 @@ const WelcomeCard = ({ sessionNumber, game, image }: Props) => {
       <img
         src={image}
         alt={image.slice(1, -5)}
-        className="2xl:max-w-xs  max-w-[230px]"
+        className="2xl:max-w-xs  max-w-[230px] sm:inline-block hidden"
+      />
+      <img
+        src={image}
+        alt={image.slice(1, -5)}
+        className="w-48 h-52 sm:hidden inline-block "
       />
     </div>
   );
