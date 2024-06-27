@@ -50,9 +50,9 @@ const MainDashboard = () => {
     <>
       {/* Patient Select */}
       {doctorData ? (
-        <div className="ml-14 mr-14 mb-10 mt-5  flex gap-5">
+        <div className="ml-14 mr-14 mb-10 mt-10  flex gap-5 flex-wrap md:flex-nowrap ">
           <select
-            className="select select-primary min-w-72"
+            className="select select-primary   md:min-w-44 2xl:min-w-64"
             value={selectedPatient}
             name="patient"
             onChange={handleChange}
@@ -67,7 +67,7 @@ const MainDashboard = () => {
           {/* Game Select */}
 
           <select
-            className="select select-primary min-w-72"
+            className="select select-primary  md:min-w-44  2xl:min-w-64"
             value={selectedGame}
             name="game"
             onChange={handleChange}
@@ -82,7 +82,7 @@ const MainDashboard = () => {
           {/* Session Select */}
 
           <select
-            className="select select-primary min-w-72"
+            className="select select-primary md:min-w-44  2xl:min-w-64"
             value={selectedSession}
             name="session"
             onChange={handleChange}

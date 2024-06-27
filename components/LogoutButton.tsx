@@ -9,7 +9,8 @@ const LogoutButton = () => {
       onClick={() => signOut({ callbackUrl: '/' })}
       className="btn bg-brand-red hover:bg-red-600 text-white mt-auto transition-colors "
     >
-      <CiLogout size={20} color="white" /> Log out
+      <CiLogout size={20} color="white" />{' '}
+      <span className="hidden md:block">Log out</span>
     </button>
   );
 };

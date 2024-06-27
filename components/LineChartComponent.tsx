@@ -16,7 +16,7 @@ interface Props {
 
 const LineChartComponent = ({ chartData }: Props) => {
   return (
-    <div className="bg-welcome rounded-3xl p-7  ">
+    <div className="bg-welcome rounded-3xl 2xl:p-10 p-6 ">
       <LineChart
         width={500}
         height={300}

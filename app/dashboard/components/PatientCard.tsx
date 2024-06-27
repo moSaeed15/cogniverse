@@ -18,7 +18,7 @@ const PatientCard = ({ patientData, sessionTime, sessionNumber }: Props) => {
   };
 
   return (
-    <div className="bg-patient  rounded-3xl p-7  ">
+    <div className="bg-patient  rounded-3xl 2xl:p-10 p-6 col-span-2 lg:col-span-1 ">
       <h3 className="text-lg">Patient Information</h3>
       <p className="text-sm text-light-grey mt-3 ">
         Patient came in on the day of {sessionTime.date} and time{' '}

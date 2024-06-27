@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useSession } from 'next-auth/react';
@@ -37,16 +38,16 @@ const WelcomeCard = ({ sessionNumber, game, image }: Props) => {
   if (status === 'loading') return null;
 
   return (
-    <div className="flex bg-welcome rounded-3xl p-7">
+    <div className="flex bg-welcome rounded-3xl 2xl:p-7 p-6 col-span-2 lg:col-span-1 justify-between">
       <div className="flex flex-col gap-3 text-light-grey">
         <span className="text-sm">Welcome back,</span>
-        <h2 className="text-white text-2xl">
+        <h2 className="text-white text-xl 2xl:text-2xl">
           {status === 'authenticated' &&
             session.user?.name?.replace(/\b\w/g, function (char: string) {
               return char.toUpperCase();
             })}
         </h2>
-        <p className="text-base">
+        <p className="2xl:text-base text-sm">
           Glad to see you again! You are Viewing {getGameName(game)} statistics
         </p>
         <span className="font-bold ">
@@ -54,12 +55,10 @@ const WelcomeCard = ({ sessionNumber, game, image }: Props) => {
         </span>
       </div>
 
-      <Image
+      <img
         src={image}
         alt={image.slice(1, -5)}
-        width={300}
-        height={300}
-        priority
+        className="2xl:max-w-xs  max-w-[230px]"
       />
     </div>
   );

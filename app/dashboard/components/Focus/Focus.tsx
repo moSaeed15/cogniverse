@@ -53,8 +53,8 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
   }, [tries, tableData, chartData, sessionTime]);
 
   return (
-    <div className="overflow-hidden">
-      <div className=" grid grid-cols-4 gap-8 mt-7 ">
+    <div className="overflow-hidden ">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 mt-7   ">
         {!isLoading && (
           <StatusCard
             title="Number of trials"
@@ -71,7 +71,7 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
           />
         )}
       </div>
-      <div className="grid grid-cols-2 gap-5 mt-10">
+      <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
         {!isLoading && (
           <WelcomeCard
             sessionNumber={sessionNumber}
@@ -87,8 +87,6 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
             sessionNumber={sessionNumber}
           />
         )}
-      </div>
-      <div className="grid grid-cols-2  gap-5 mt-10 ">
         {!isLoading && (
           <TableGamesData tableData={tableData!} tableTitles={tableTitles} />
         )}
@@ -101,8 +99,7 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
             noGoResponseTime={tries?.noGoResponseTime!}
           />
         )}
-      </div>
-      <div className="grid grid-cols-2  gap-5 mt-10 ">
+
         {accuracyChartData && (
           <AccuracyChartData accuracyChartData={accuracyChartData} />
         )}

@@ -28,7 +28,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/auth/[...nextauth]/route.ts",
-    "middlewaresass.ts"
+    "middlewaresass.ts",
+    "components/ProgressBar.jsx",
+    "components/ProgressBar.jsx"
   ],
   "exclude": ["node_modules"]
 }

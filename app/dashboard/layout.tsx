@@ -10,7 +10,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex min-h-screen relative ">
+    <>
       <Image
         fill
         alt="main-background"
@@ -18,14 +18,16 @@ export default function DashboardLayout({
         priority
         className="absolute  -z-10"
       />
-      <Sidebar />
-      <div className="flex flex-col w-full">
-        <NavBar />
-        <Suspense>
-          <MainDashboard />
-        </Suspense>
-        {children}
+      <div className="flex min-h-screen relative max-w-4xl lg:max-w-7xl mx-auto">
+        {/* <Sidebar /> */}
+        <div className="flex flex-col w-full">
+          <NavBar />
+          <Suspense>
+            <MainDashboard />
+          </Suspense>
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -8,7 +8,7 @@ const Avatar = () => {
 
   return (
     <div className="avatar cursor-pointer   ">
-      <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 mr-10">
+      <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 mr-10 sm:!block !hidden">
         {status === 'authenticated' && (
           <Image
             src={session?.user!.image!}

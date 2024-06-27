@@ -27,7 +27,7 @@ const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
   }, []);
 
   return (
-    <div className="flex pl-14 pb-10 mr-5 ">
+    <div className="flex pl-14 pb-10 mr-5  ">
       {game === 'maze' && (
         <Maze sessionNumber={Number(session)} game={game} user={user} />
       )}

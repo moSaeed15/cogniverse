@@ -21,7 +21,27 @@ const ProgressBar = ({ progress, label }) => {
         {label}
       </h3>
       <div
-        className={`radial-progress   ${
+        className={`radial-progress hidden lg:inline-grid    ${
+          progressAnimiationValue > 50 ? 'text-[#A0DDFF]' : 'text-[#E63462]'
+        } `}
+        style={{ '--value': progressAnimiationValue, '--size': '10rem' }}
+        role="progressbar"
+      >
+        {progressAnimiationValue}%
+      </div>
+
+      <div
+        className={`radial-progress md:inline-grid  hidden lg:hidden   ${
+          progressAnimiationValue > 50 ? 'text-[#A0DDFF]' : 'text-[#E63462]'
+        } `}
+        style={{ '--value': progressAnimiationValue, '--size': '7rem' }}
+        role="progressbar"
+      >
+        {progressAnimiationValue}%
+      </div>
+
+      <div
+        className={`radial-progress  inline-grid md:hidden  ${
           progressAnimiationValue > 50 ? 'text-[#A0DDFF]' : 'text-[#E63462]'
         } `}
         style={{ '--value': progressAnimiationValue, '--size': '10rem' }}

@@ -9,7 +9,7 @@ interface Props {
 
 const StatusCard = ({ title, image, number, isTime }: Props) => {
   return (
-    <div className="bg-status flex items-center justify-between py-3 pr-3 pl-5 rounded-2xl">
+    <div className="bg-status flex items-center justify-between py-3 pr-3 pl-5 rounded-2xl min-w-52">
       <div>
         <p className="text-xs text-light-grey">{title}</p>
 
