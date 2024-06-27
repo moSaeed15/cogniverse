@@ -44,7 +44,7 @@ const ProgressBar = ({ progress, label }) => {
         className={`radial-progress  inline-grid md:hidden  ${
           progressAnimiationValue > 50 ? 'text-[#A0DDFF]' : 'text-[#E63462]'
         } `}
-        style={{ '--value': progressAnimiationValue, '--size': '8rem' }}
+        style={{ '--value': progressAnimiationValue, '--size': '7rem' }}
         role="progressbar"
       >
         {progressAnimiationValue}%

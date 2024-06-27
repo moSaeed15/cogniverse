@@ -18,11 +18,11 @@ const GameMetrics = ({
         Last Trial Data:
       </h2>
       <div className=" flex flex-col xl:flex-row ml-5 lg:ml-3 gap-5  2xl:items-center md:items-start items-center">
-        <div className="flex  gap-14 lg:gap-8  ">
+        <div className="flex  gap-5 sm:gap-14 lg:gap-8 flex-col sm:flex-row  ">
           <ProgressBar progress={accuracy} label="Accuracy" />
           <ProgressBar progress={scorePercent} label="Score %" />
         </div>
-        <div className="flex xl:flex-col flex-row gap-4 lg:gap-10 2xl:space-y-7 2xl:justify-center  items-center ">
+        <div className="flex xl:flex-col sm:flex-row gap-4 lg:gap-10 2xl:space-y-7 2xl:justify-center  items-center flex-col ">
           <div className="">
             <h3 className="text-gray-200 font-bold text-center whitespace-nowrap text-base lg:text-base md:text-sm">
               Go Response Time

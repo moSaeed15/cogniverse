@@ -13,7 +13,7 @@ const TrailGameMetrics = ({
       <h2 className="text-2xl mb-5 font-semibold md:text-left text-center">
         Last Trial Data:
       </h2>
-      <div className=" flex gap-5 items-center self-center md:self-start">
+      <div className=" flex gap-5 sm:gap-14 lg:gap-8 items-center self-center md:self-start  flex-col sm:flex-row ">
         <ProgressBar progress={accuracy} label="Accuracy" />
         <ProgressBar progress={scorePercent} label="Score %" />
       </div>
