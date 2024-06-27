@@ -27,7 +27,7 @@ const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
       if (data === undefined) {
         router.push('/');
       }
-    }, 500);
+    }, 1000);
 
     // Cleanup the timeout if the component is unmounted
     return () => clearTimeout(timer);

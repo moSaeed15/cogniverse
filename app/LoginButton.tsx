@@ -46,7 +46,8 @@ const LoginButton = () => {
     <>
       <button
         onClick={handleSignIn}
-        className="flex items-center w-1/2 mt-5 justify-center border-2 min-w-52 whitespace-nowrap border-gray-300 rounded-md shadow-sm py-2 px-4 text-base gap-5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+        disabled={status === 'loading'}
+        className=" disabled:opacity-50 flex items-center w-1/2 mt-5 justify-center border-2 min-w-52 whitespace-nowrap border-gray-300 rounded-md shadow-sm py-2 px-4 text-base gap-5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
       >
         <Image src="/google.svg" alt="google icon" width={20} height={20} />
         Sign in with Google
