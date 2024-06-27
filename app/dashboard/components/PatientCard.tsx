@@ -25,7 +25,7 @@ const PatientCard = ({ patientData, sessionTime, sessionNumber }: Props) => {
         {sessionTime.time} for the {getSessionNumber(sessionNumber)} session
       </p>
       <div className="custom-divider my-5"></div>
-      <div className=" flex gap-5 text-sm ">
+      <div className=" flex sm:flex-row flex-col gap-5 text-sm ">
         <div className="flex flex-col gap-5">
           <PairText title="Full Name:" text={patientData.name} />
           <PairText title="Age:" text={String(patientData.age)} />

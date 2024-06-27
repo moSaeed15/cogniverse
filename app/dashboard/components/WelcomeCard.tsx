@@ -38,7 +38,7 @@ const WelcomeCard = ({ sessionNumber, game, image }: Props) => {
   if (status === 'loading') return null;
 
   return (
-    <div className="flex bg-welcome rounded-3xl 2xl:p-7 p-6 col-span-2 lg:col-span-1 justify-between">
+    <div className="flex bg-welcome rounded-3xl 2xl:p-7 p-6 col-span-2 lg:col-span-1 justify-between flex-col sm:flex-row items-center">
       <div className="flex flex-col gap-3 text-light-grey">
         <span className="text-sm">Welcome back,</span>
         <h2 className="text-white text-xl 2xl:text-2xl">
@@ -63,7 +63,7 @@ const WelcomeCard = ({ sessionNumber, game, image }: Props) => {
       <img
         src={image}
         alt={image.slice(1, -5)}
-        className="w-48 h-52 sm:hidden inline-block "
+        className="h-40 w-auto sm:hidden inline-block "
       />
     </div>
   );
