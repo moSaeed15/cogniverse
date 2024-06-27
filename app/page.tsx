@@ -9,16 +9,28 @@ const Login = () => {
         <link rel="preload" href="/login.webp" as="image" />
       </Head>
       <div className="flex">
-        <div className="w-2/3 bg-login h-screen flex flex-col items-center justify-center bg-no-repeat bg-cover pb-16">
-          <h1 className="text-7xl font-bold relative -top-20">Cogniverse</h1>
+        <div className=" bg-login h-screen flex flex-col items-center justify-center bg-no-repeat bg-cover pb-16 lg:w-2/3 w-full">
+          <h1 className="lg:text-7xl text-6xl font-bold relative lg:-top-20 -top-10">
+            Cogniverse
+          </h1>
           <Image
             src="/cogniverse-logo.svg"
             width={200}
             height={200}
+            className="lg:w-52 w-44"
             alt="logo"
+            priority={true}
           />
+          <div className=" justify-center flex flex-col lg:hidden  mt-5 items-center rounded-xl">
+            <h2 className="font-bold text-3xl">Nice to see you!</h2>
+            <p className="text-white/90 font-medium max-w-72 my-3">
+              Sign in with your google credentials to access the patient
+              dashboard
+            </p>
+            <LoginButton />
+          </div>
         </div>
-        <div className="w-1/2 flex ml-10 pl-32 justify-center flex-col ">
+        <div className="w-1/2  ml-10 pl-32 justify-center flex-col hidden lg:flex ">
           <h2 className="font-bold text-3xl">Nice to see you!</h2>
           <p className="text-light-grey font-medium max-w-72 my-3">
             Sign in with your google credentials to access the patient dashboard

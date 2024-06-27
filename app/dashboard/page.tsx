@@ -22,9 +22,16 @@ const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(data);
-    if (data === undefined) router.push('/');
-  }, []);
+    const timer = setTimeout(() => {
+      console.log(data);
+      if (data === undefined) {
+        router.push('/');
+      }
+    }, 500);
+
+    // Cleanup the timeout if the component is unmounted
+    return () => clearTimeout(timer);
+  }, [data]);
 
   return (
     <div className="flex pl-14 pb-10 mr-5  ">
