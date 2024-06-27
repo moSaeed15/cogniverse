@@ -10,4 +10,5 @@ The Game Data Dashboard is a project developed as part of my graduation project.
 - **Tech Stack**: Built using Next.js and Tailwind CSS, with TypeScript integration for enhanced type-safety and reduced potential bugs.
 - **Firebase Integration**: Integrated with Firebase to retrieve user-specific data based on applied filters, ensuring real-time access to relevant information.
 
-![cogniverse-rho vercel app_](https://github.com/moSaeed15/cogniverse/assets/67608414/5e5234ae-4585-4f60-ae8f-c9ad717ba046)
+![cogniverse-rho vercel app_dashboard (1)](https://github.com/moSaeed15/cogniverse/assets/67608414/71632db3-9eea-418b-a5ce-6ddc52f9f0a8)
+![cogniverse-rho vercel app_dashboard (2)](https://github.com/moSaeed15/cogniverse/assets/67608414/c63a0806-45e0-4c51-aea4-73f2b5af11fd)
