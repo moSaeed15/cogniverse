@@ -41,7 +41,7 @@ const Maze = ({ sessionNumber, game, user, isDemo }: Props) => {
       <div>
         {!isLoading ? (
           <>
-            <MazeStatusCardGroup tries={tries} />
+            {tries && <MazeStatusCardGroup tries={tries} />}
             <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
               <WelcomeCard
                 isDemo={isDemo}
