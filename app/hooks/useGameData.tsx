@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
-import { get, ref } from 'firebase/database';
-import { database } from '@/app/FirebaseConfig';
 import {
+  chartData,
   MazeObject,
   SessionTime,
-  chartData,
   SharedGameObject,
   TriesData,
   TrailGameObject,
 } from '@/app/types/gameTypes';
-
 import {
   filterDataBySession,
   getProcessedChartData,
@@ -29,13 +26,14 @@ const useGameData = <T extends MazeObject | SharedGameObject | TrailGameObject>(
 
   useEffect(() => {
     const getSessionData = async () => {
-      const gameRef = ref(database, `users/${user}/${game}`);
-
       try {
-        const Gamesnapshot = await get(gameRef);
+        const response = await fetch(
+          `/api/getgamedata?user=${user}&game=${game}`
+        );
+        const result = await response.json();
 
-        if (Gamesnapshot.exists()) {
-          const snapshotArr: T[] = Object.values(Gamesnapshot.val());
+        if (result.success && result.data) {
+          const snapshotArr: T[] = Object.values(result.data);
           const filteredData = filterDataBySession(sessionNumber, snapshotArr);
 
           setTableData(filteredData);
@@ -71,6 +69,8 @@ const useGameData = <T extends MazeObject | SharedGameObject | TrailGameObject>(
           setSessionTime(setSessionTimeState(filteredData));
           setTries(triesData);
           setChartData(processedData);
+        } else {
+          console.error('Error fetching session data:', result.message);
         }
       } catch (error) {
         console.error('Error fetching session data:', error);
@@ -79,6 +79,7 @@ const useGameData = <T extends MazeObject | SharedGameObject | TrailGameObject>(
 
     getSessionData();
   }, [user, sessionNumber, game]);
+
   return { tries, tableData, chartData, sessionTime };
 };
 

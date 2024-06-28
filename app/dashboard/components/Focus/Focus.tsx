@@ -48,11 +48,11 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
       }));
       setAccuracyChartData(processedData);
     };
-    if (tries && tableData && chartData && sessionTime) {
+    if (tries && tableData && chartData && sessionTime && patientData) {
       setIsLoading(false);
       getProcessedAccuracyChartData(tableData);
     }
-  }, [tries, tableData, chartData, sessionTime]);
+  }, [tries, tableData, chartData, sessionTime, patientData]);
 
   return (
     <div className="overflow-hidden ">

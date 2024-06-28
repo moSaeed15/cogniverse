@@ -14,7 +14,7 @@ export default function DemoLayout({
       <Image
         fill
         alt="main-background"
-        src={'/background-image.png'}
+        src={'/background-image.webp'}
         priority
         className="absolute  -z-10"
       />

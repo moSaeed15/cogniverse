@@ -19,7 +19,7 @@ const Avatar = () => {
             height={300}
           />
         ) : (
-          <Image src="/profile.jpeg" alt="avatar" width={300} height={300} />
+          <Image src="/profile.webp" alt="avatar" width={300} height={300} />
         )}
       </div>
       {status === 'authenticated' ? (

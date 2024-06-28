@@ -34,10 +34,10 @@ const Dual = ({ sessionNumber, game, user, isDemo }: Props) => {
   ];
 
   useEffect(() => {
-    if (tries && tableData && chartData && sessionTime) {
+    if (tries && tableData && chartData && sessionTime && patientData) {
       setIsLoading(false);
     }
-  }, [tries, tableData, chartData, sessionTime]);
+  }, [tries, tableData, chartData, sessionTime, patientData]);
 
   return (
     <>

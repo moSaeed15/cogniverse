@@ -46,11 +46,11 @@ const Trail = ({ sessionNumber, game, user, isDemo }: Props) => {
       }));
       setAccuracyChartData(processedData);
     };
-    if (tries && tableData && chartData && sessionTime) {
+    if (tries && tableData && chartData && sessionTime && patientData) {
       setIsLoading(false);
       getProcessedAccuracyChartData(tableData);
     }
-  }, [tries, tableData, chartData, sessionTime]);
+  }, [tries, tableData, chartData, sessionTime, patientData]);
 
   return (
     <div className="overflow-hidden ">
