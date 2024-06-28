@@ -1,5 +1,3 @@
-'use client';
-
 import { useSession } from 'next-auth/react';
 import Daul from './components/Dual/Dual';
 import Focus from './components/Focus/Focus';
