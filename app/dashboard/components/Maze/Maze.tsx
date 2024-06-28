@@ -51,12 +51,12 @@ const Maze = ({ sessionNumber, game, user, isDemo }: Props) => {
               />
 
               <PatientCard
-                patientData={patientData}
+                patientData={patientData!}
                 sessionTime={sessionTime!}
                 sessionNumber={sessionNumber}
               />
-              <TrialsData tableData={tableData} tableTitles={tableTitles} />
-              <LineChartComponent chartData={chartData} />
+              <TrialsData tableData={tableData!} tableTitles={tableTitles} />
+              <LineChartComponent chartData={chartData!} />
             </div>
           </>
         ) : (

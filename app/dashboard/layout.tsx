@@ -1,5 +1,5 @@
 import NavBar from '../../components/NavBar';
-import Sidebar from './components/Sidebar';
+// import Sidebar from './components/Sidebar';
 import MainDashboard from './components/MainDashboard';
 import Image from 'next/image';
 import { Suspense } from 'react';

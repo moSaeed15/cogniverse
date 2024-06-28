@@ -1,8 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { PatientData } from '@/app/types/patientTypes';
-
+export interface PatientData {
+  age: number;
+  name: string;
+  diagnosis: string;
+  email: string;
+  gender: string;
+  reinforcementType: string;
+}
 const usePatientData = (user: string): PatientData | null => {
   const [patientData, setPatientData] = useState<null | PatientData>(null);
 

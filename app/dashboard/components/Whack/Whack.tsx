@@ -95,7 +95,7 @@ const Whack = ({ sessionNumber, game, user, isDemo }: Props) => {
               noGoResponseTime={tries?.noGoResponseTime!}
             />
 
-            <LineChartComponent chartData={chartData} />
+            <LineChartComponent chartData={chartData!} />
             {accuracyChartData && (
               <AccuracyChartData accuracyChartData={accuracyChartData} />
             )}

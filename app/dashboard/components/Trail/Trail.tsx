@@ -97,7 +97,7 @@ const Trail = ({ sessionNumber, game, user, isDemo }: Props) => {
               scorePercent={tries?.scorePercent!}
             />
 
-            <LineChartComponent chartData={chartData} />
+            <LineChartComponent chartData={chartData!} />
             {accuracyChartData && (
               <AccuracyChartData accuracyChartData={accuracyChartData} />
             )}
