@@ -60,7 +60,6 @@ const useDoctorData = (): DoctorData | undefined => {
       });
       return patientDataArr;
     } catch (error) {
-      console.log(error);
       return null;
     }
   };

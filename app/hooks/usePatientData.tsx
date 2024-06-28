@@ -46,7 +46,6 @@ const usePatientData = (user: string): PatientData | null => {
           return { ...acc, [key]: value };
         }, {});
 
-        console.log(patientObject);
         const patientData: PatientData = {
           age: patientObject.age,
           name:

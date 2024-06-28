@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Avatar from '../../../components/Avatar';
+import Avatar from './Avatar';
 
 const NavBar = () => {
   return (

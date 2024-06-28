@@ -8,14 +8,18 @@ import PatientCard from '../PatientCard';
 import WelcomeCard from '../WelcomeCard';
 import MazeStatusCardGroup from './MazeStatusCardGroup';
 import TrialsData from './TrialsData';
+import { useEffect, useState } from 'react';
+import LoadingGame from '@/components/LoadingGame';
 
 interface Props {
   sessionNumber: number;
   user: string;
   game: string;
+  isDemo?: boolean;
 }
 
-const Maze = ({ sessionNumber, game, user }: Props) => {
+const Maze = ({ sessionNumber, game, user, isDemo }: Props) => {
+  const [isLoading, setIsLoading] = useState(true);
   const tableTitles = ['Trial Number', 'Time', 'Number of hits', 'Trial time'];
 
   const patientData = usePatientData(user);
@@ -26,32 +30,39 @@ const Maze = ({ sessionNumber, game, user }: Props) => {
     game
   );
 
+  useEffect(() => {
+    if (tries && tableData && chartData && sessionTime) {
+      setIsLoading(false);
+    }
+  }, [tries, tableData, chartData, sessionTime]);
+
   return (
     <>
-      {tries && (
-        <div>
-          {tries && <MazeStatusCardGroup tries={tries} />}
-          <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
-            <WelcomeCard
-              sessionNumber={sessionNumber}
-              game={game}
-              image="/Spark.webp"
-            />
+      <div>
+        {!isLoading ? (
+          <>
+            <MazeStatusCardGroup tries={tries} />
+            <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+              <WelcomeCard
+                isDemo={isDemo}
+                sessionNumber={sessionNumber}
+                game={game}
+                image="/Spark.webp"
+              />
 
-            {patientData && sessionTime && (
               <PatientCard
                 patientData={patientData}
                 sessionTime={sessionTime}
                 sessionNumber={sessionNumber}
               />
-            )}
-            {tableData && (
               <TrialsData tableData={tableData} tableTitles={tableTitles} />
-            )}
-            {chartData && <LineChartComponent chartData={chartData} />}
-          </div>
-        </div>
-      )}
+              <LineChartComponent chartData={chartData} />
+            </div>
+          </>
+        ) : (
+          <LoadingGame />
+        )}
+      </div>
     </>
   );
 };

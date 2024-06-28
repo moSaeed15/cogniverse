@@ -6,8 +6,8 @@ import Focus from './components/Focus/Focus';
 import Maze from './components/Maze/Maze';
 import Trail from './components/Trail/Trail';
 import Whack from './components/Whack/Whack';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+
+import Dual from './components/Dual/Dual';
 
 interface Props {
   searchParams: {
@@ -18,21 +18,6 @@ interface Props {
 }
 
 const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
-  const { data, status } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log(data);
-      if (data === undefined) {
-        router.push('/');
-      }
-    }, 1000);
-
-    // Cleanup the timeout if the component is unmounted
-    return () => clearTimeout(timer);
-  }, [data]);
-
   return (
     <div className="flex pl-14 pb-10 mr-5  ">
       {game === 'maze' && (
@@ -40,7 +25,7 @@ const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
       )}
 
       {game === 'dualNback' && (
-        <Daul sessionNumber={Number(session)} game={game} user={user} />
+        <Dual sessionNumber={Number(session)} game={game} user={user} />
       )}
       {game === 'focus' && (
         <Focus sessionNumber={Number(session)} game={game} user={user} />

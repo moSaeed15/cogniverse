@@ -10,14 +10,16 @@ import TrailTableData from './TrailTableData';
 import LineChartComponent from '../../../../components/LineChartComponent';
 import TrailGameMetrics from './TrailGameMetrics';
 import AccuracyChartData from '@/components/AccuracyChartData';
+import LoadingGame from '@/components/LoadingGame';
 
 interface Props {
   sessionNumber: number;
   user: string;
   game: string;
+  isDemo?: boolean;
 }
 
-const Trail = ({ sessionNumber, game, user }: Props) => {
+const Trail = ({ sessionNumber, game, user, isDemo }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [accuracyChartData, setAccuracyChartData] = useState<
     accuracyChartData[] | null
@@ -52,63 +54,58 @@ const Trail = ({ sessionNumber, game, user }: Props) => {
 
   return (
     <div className="overflow-hidden ">
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-7 ">
-        {!isLoading && (
-          <StatusCard
-            title="Number of Mistakes"
-            image="/failed.svg"
-            number={tries?.numberOfMistakes!}
-          />
-        )}
-        {!isLoading && (
-          <StatusCard
-            title="Number of trials"
-            image="/success.svg"
-            number={tries?.numberOfTrials!}
-          />
-        )}
-        {!isLoading && (
-          <StatusCard
-            title="Total time"
-            image="/clock.svg"
-            number={tries?.totalTime!}
-            isTime={true}
-          />
-        )}
-      </div>
-      <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
-        {!isLoading && (
-          <WelcomeCard
-            sessionNumber={sessionNumber}
-            game={game}
-            image="/gun.webp"
-          />
-        )}
+      {!isLoading ? (
+        <>
+          {' '}
+          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-7 ">
+            <StatusCard
+              title="Number of Mistakes"
+              image="/failed.svg"
+              number={tries?.numberOfMistakes!}
+            />
 
-        {!isLoading && (
-          <PatientCard
-            patientData={patientData!}
-            sessionTime={sessionTime!}
-            sessionNumber={sessionNumber}
-          />
-        )}
+            <StatusCard
+              title="Number of trials"
+              image="/success.svg"
+              number={tries?.numberOfTrials!}
+            />
+            <StatusCard
+              title="Total time"
+              image="/clock.svg"
+              number={tries?.totalTime!}
+              isTime={true}
+            />
+          </div>
+          <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+            <WelcomeCard
+              isDemo={isDemo}
+              sessionNumber={sessionNumber}
+              game={game}
+              image="/gun.webp"
+            />
 
-        {!isLoading && (
-          <TrailTableData tableData={tableData!} tableTitles={tableTitles} />
-        )}
+            <PatientCard
+              patientData={patientData!}
+              sessionTime={sessionTime!}
+              sessionNumber={sessionNumber}
+            />
 
-        {!isLoading && (
-          <TrailGameMetrics
-            accuracy={tries?.accuracy!}
-            scorePercent={tries?.scorePercent!}
-          />
-        )}
+            <TrailTableData tableData={tableData!} tableTitles={tableTitles} />
 
-        {chartData && <LineChartComponent chartData={chartData} />}
-        {accuracyChartData && (
-          <AccuracyChartData accuracyChartData={accuracyChartData} />
-        )}
-      </div>
+            <TrailGameMetrics
+              accuracy={tries?.accuracy!}
+              scorePercent={tries?.scorePercent!}
+            />
+
+            <LineChartComponent chartData={chartData} />
+            {accuracyChartData && (
+              <AccuracyChartData accuracyChartData={accuracyChartData} />
+            )}
+          </div>
+        </>
+      ) : (
+        <LoadingGame />
+      )}
     </div>
   );
 };

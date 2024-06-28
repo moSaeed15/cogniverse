@@ -10,11 +10,13 @@ import { accuracyChartData, SharedGameObject } from '@/app/types/gameTypes';
 import { useEffect, useState } from 'react';
 import LineChartComponent from '@/components/LineChartComponent';
 import AccuracyChartData from '@/components/AccuracyChartData';
+import LoadingGame from '@/components/LoadingGame';
 
 interface Props {
   sessionNumber: number;
   user: string;
   game: string;
+  isDemo?: boolean;
 }
 
 const Focus = ({ sessionNumber, game, user }: Props) => {
@@ -54,56 +56,52 @@ const Focus = ({ sessionNumber, game, user }: Props) => {
 
   return (
     <div className="overflow-hidden ">
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 mt-7   ">
-        {!isLoading && (
-          <StatusCard
-            title="Number of trials"
-            image="/success.svg"
-            number={tries?.numberOfTrials!}
-          />
-        )}
-        {!isLoading && (
-          <StatusCard
-            title="Total time"
-            image="/clock.svg"
-            number={tries?.totalTime!}
-            isTime={true}
-          />
-        )}
-      </div>
-      <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
-        {!isLoading && (
-          <WelcomeCard
-            sessionNumber={sessionNumber}
-            game={game}
-            image="/focus.webp"
-          />
-        )}
+      {!isLoading ? (
+        <>
+          {' '}
+          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 mt-7   ">
+            <StatusCard
+              title="Number of trials"
+              image="/success.svg"
+              number={tries?.numberOfTrials!}
+            />
 
-        {!isLoading && (
-          <PatientCard
-            patientData={patientData!}
-            sessionTime={sessionTime!}
-            sessionNumber={sessionNumber}
-          />
-        )}
-        {!isLoading && (
-          <TableGamesData tableData={tableData!} tableTitles={tableTitles} />
-        )}
+            <StatusCard
+              title="Total time"
+              image="/clock.svg"
+              number={tries?.totalTime!}
+              isTime={true}
+            />
+          </div>
+          <div className="grid  grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+            <WelcomeCard
+              sessionNumber={sessionNumber}
+              game={game}
+              image="/focus.webp"
+            />
 
-        {!isLoading && (
-          <GameMetrics
-            accuracy={tries?.accuracy!}
-            scorePercent={tries?.scorePercent!}
-            goResponseTime={tries?.goResponseTime!}
-            noGoResponseTime={tries?.noGoResponseTime!}
-          />
-        )}
+            <PatientCard
+              patientData={patientData!}
+              sessionTime={sessionTime!}
+              sessionNumber={sessionNumber}
+            />
+            <TableGamesData tableData={tableData!} tableTitles={tableTitles} />
 
-        {accuracyChartData && (
-          <AccuracyChartData accuracyChartData={accuracyChartData} />
-        )}
-      </div>
+            <GameMetrics
+              accuracy={tries?.accuracy!}
+              scorePercent={tries?.scorePercent!}
+              goResponseTime={tries?.goResponseTime!}
+              noGoResponseTime={tries?.noGoResponseTime!}
+            />
+
+            {accuracyChartData && (
+              <AccuracyChartData accuracyChartData={accuracyChartData} />
+            )}
+          </div>
+        </>
+      ) : (
+        <LoadingGame />
+      )}
     </div>
   );
 };

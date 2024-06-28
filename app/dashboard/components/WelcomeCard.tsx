@@ -8,6 +8,7 @@ interface Props {
   sessionNumber: number;
   game: string;
   image: string;
+  isDemo?: boolean;
 }
 
 const getSessionNumber = (sessionNumber: number): string => {
@@ -42,10 +43,11 @@ const WelcomeCard = ({ sessionNumber, game, image }: Props) => {
       <div className="flex flex-col gap-3 text-light-grey">
         <span className="text-sm">Welcome back,</span>
         <h2 className="text-white text-xl 2xl:text-2xl">
-          {status === 'authenticated' &&
-            session.user?.name?.replace(/\b\w/g, function (char: string) {
-              return char.toUpperCase();
-            })}
+          {status === 'authenticated'
+            ? session.user?.name?.replace(/\b\w/g, function (char: string) {
+                return char.toUpperCase();
+              })
+            : 'Test User'}
         </h2>
         <p className="2xl:text-base text-sm">
           Glad to see you again! You are Viewing {getGameName(game)} statistics

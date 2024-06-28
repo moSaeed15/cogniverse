@@ -1,10 +1,10 @@
-import NavBar from '../../components/NavBar';
-import Sidebar from './components/Sidebar';
-import MainDashboard from './components/MainDashboard';
 import Image from 'next/image';
 import { Suspense } from 'react';
+import NavBar from '../../components/NavBar';
+import MainDashboard from '../dashboard/components/MainDashboard';
+import DemoSelection from './DemoSelection';
 
-export default function DashboardLayout({
+export default function DemoLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export default function DashboardLayout({
         <div className="flex flex-col w-full">
           <NavBar />
           <Suspense>
-            <MainDashboard />
+            <DemoSelection />
           </Suspense>
           {children}
         </div>
