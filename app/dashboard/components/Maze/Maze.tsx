@@ -52,7 +52,7 @@ const Maze = ({ sessionNumber, game, user, isDemo }: Props) => {
 
               <PatientCard
                 patientData={patientData}
-                sessionTime={sessionTime}
+                sessionTime={sessionTime!}
                 sessionNumber={sessionNumber}
               />
               <TrialsData tableData={tableData} tableTitles={tableTitles} />
