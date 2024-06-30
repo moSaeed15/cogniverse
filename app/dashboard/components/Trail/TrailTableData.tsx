@@ -24,7 +24,7 @@ const TrailTableData = ({ tableData, tableTitles }: Props) => {
               <td>{tryItem.accuracy.toFixed(3)}</td>
               <td>{tryItem.overallTime.toFixed(3)}</td>
               <td>{+tryItem.scorePercent.toFixed(2) * 100}</td>
-              <td>{+tryItem.numberOfMistakes.toFixed(2) * 100}</td>
+              <td>{+tryItem.numberOfMistakes.toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
