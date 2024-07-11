@@ -15,7 +15,7 @@ const Login = () => {
             Cogniverse
           </h1>
           <Image
-            src="/cogniverse-logo.svg"
+            src="/cogniverse-logo.webp"
             width={200}
             height={200}
             className="lg:w-52 w-44"

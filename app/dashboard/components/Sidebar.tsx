@@ -11,7 +11,7 @@
 //       <div className="flex items-center gap-2">
 //         <Link href={'/dashboard'}>
 //           <Image
-//             src="/cogniverse-logo.svg"
+//             src="/cogniverse-logo.webp"
 //             alt="congniverse logo"
 //             width={100}
 //             height={90}
