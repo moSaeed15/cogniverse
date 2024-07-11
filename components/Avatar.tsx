@@ -28,6 +28,7 @@ const Avatar = () => {
         <button
           onClick={() => router.push('/')}
           className="btn bg-brand-red hover:bg-red-600 text-white mt-auto transition-colors "
+          aria-label="return"
         >
           <CiLogout size={20} color="white" />{' '}
           <span className="hidden md:block">Return</span>

@@ -10,7 +10,7 @@ const NavBar = () => {
           alt="congniverse logo"
           width={90}
           height={80}
-          className="cursor-pointer min-w-20 min-h-20 w-10  "
+          className="cursor-pointer min-w-20  w-10  "
           priority={true}
         />{' '}
         Cogniverse

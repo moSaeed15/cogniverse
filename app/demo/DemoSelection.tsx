@@ -45,6 +45,7 @@ const DemoSelection = () => {
         value={selectedPatient}
         name="patient"
         onChange={handleChange}
+        aria-label="Select Patient"
       >
         <option value="x8Y8rnE0EEWaxbRiNpQpDU3KUNl1">Test 5</option>
       </select>
@@ -56,6 +57,7 @@ const DemoSelection = () => {
         value={selectedGame}
         name="game"
         onChange={handleChange}
+        aria-label="Select Game"
       >
         {games.map((game, i) => (
           <option key={i} value={game}>
@@ -70,6 +72,7 @@ const DemoSelection = () => {
         className="select select-primary md:min-w-44  2xl:min-w-64"
         value={selectedSession}
         name="session"
+        aria-label="Select Session"
         onChange={handleChange}
       >
         <option value="1">Session One</option>

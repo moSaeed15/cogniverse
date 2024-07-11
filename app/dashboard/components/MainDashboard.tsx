@@ -56,6 +56,7 @@ const MainDashboard = () => {
             value={selectedPatient}
             name="patient"
             onChange={handleChange}
+            aria-label="Select Patient"
           >
             {doctorData?.patientsData.map((patient, i) => (
               <option key={i} value={patient.id}>
@@ -71,6 +72,7 @@ const MainDashboard = () => {
             value={selectedGame}
             name="game"
             onChange={handleChange}
+            aria-label="Select Game"
           >
             {games.map((game, i) => (
               <option key={i} value={game}>
@@ -86,6 +88,7 @@ const MainDashboard = () => {
             value={selectedSession}
             name="session"
             onChange={handleChange}
+            aria-label="Select Session"
           >
             <option value="1">Session One</option>
             <option value="2">Session Two</option>
