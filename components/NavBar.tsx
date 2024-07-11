@@ -11,7 +11,7 @@ const NavBar = () => {
           width={90}
           height={80}
           className="cursor-pointer min-w-20 min-h-20 w-10  "
-          priority
+          priority={true}
         />{' '}
         Cogniverse
       </h2>
