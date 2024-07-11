@@ -57,12 +57,18 @@ const WelcomeCard = ({ sessionNumber, game, image }: Props) => {
         </span>
       </div>
 
-      <img
+      <Image
+        width={300}
+        height={300}
         src={image}
+        priority={true}
         alt={image.slice(1, -5)}
         className="2xl:max-w-xs  max-w-[230px] sm:inline-block hidden"
       />
-      <img
+      <Image
+        width={300}
+        height={300}
+        priority={true}
         src={image}
         alt={image.slice(1, -5)}
         className="h-40 w-auto sm:hidden inline-block "
