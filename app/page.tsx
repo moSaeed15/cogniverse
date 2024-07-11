@@ -20,6 +20,7 @@ const Login = () => {
             height={200}
             className="lg:w-52 w-44"
             alt="logo"
+            quality={70}
             priority={true}
           />
           <div className=" justify-center flex flex-col lg:hidden  mt-5 items-center rounded-xl">
