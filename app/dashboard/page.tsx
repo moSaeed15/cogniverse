@@ -1,21 +1,19 @@
-import { useSession } from 'next-auth/react';
-import Daul from './components/Dual/Dual';
+import Dual from './components/Dual/Dual';
 import Focus from './components/Focus/Focus';
 import Maze from './components/Maze/Maze';
 import Trail from './components/Trail/Trail';
 import Whack from './components/Whack/Whack';
 
-import Dual from './components/Dual/Dual';
-
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     game: string;
     user: string;
     session: string;
-  };
+  }>;
 }
 
-const Dashboard = ({ searchParams: { game, user, session } }: Props) => {
+const Dashboard = async ({ searchParams }: Props) => {
+  const { game, user, session } = await searchParams;
   return (
     <div className="flex pl-14 pb-10 mr-5  ">
       {game === 'maze' && (

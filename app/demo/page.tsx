@@ -6,14 +6,15 @@ import Whack from '../dashboard/components/Whack/Whack';
 import Trail from '../dashboard/components/Trail/Trail';
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     game: string;
     user: string;
     session: string;
-  };
+  }>;
 }
 
-const DemoPage = ({ searchParams: { game, user, session } }: Props) => {
+const DemoPage = async ({ searchParams }: Props) => {
+  const { game, user, session } = await searchParams;
   return (
     <div className="flex pl-14 pb-10 mr-5  ">
       {' '}

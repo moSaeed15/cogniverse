@@ -28,7 +28,9 @@ const useGameData = <T extends MazeObject | SharedGameObject | TrailGameObject>(
     const getSessionData = async () => {
       try {
         const response = await fetch(
-          `/api/getgamedata?user=${user}&game=${game}`
+          `/api/getgamedata?user=${encodeURIComponent(
+            user
+          )}&game=${encodeURIComponent(game)}`
         );
         const result = await response.json();
 

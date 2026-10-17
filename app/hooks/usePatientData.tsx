@@ -15,7 +15,9 @@ const usePatientData = (user: string): PatientData | null => {
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
-        const response = await fetch(`/api/getpatientdata?user=${user}`);
+        const response = await fetch(
+          `/api/getpatientdata?user=${encodeURIComponent(user)}`
+        );
         const result = await response.json();
 
         if (result.success && result.data) {

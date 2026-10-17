@@ -1,14 +1,11 @@
 import Image from 'next/image';
 import LoginButton from '@/app/LoginButton';
-import Head from 'next/head';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 const Login = () => {
   return (
     <>
-      <Head>
-        <link rel="preload" href="/login.webp" as="image" />
-      </Head>
       <div className="flex">
         <div className=" bg-login h-screen flex flex-col items-center justify-center bg-no-repeat bg-cover pb-16 lg:w-2/3 w-full">
           <h1 className="lg:text-7xl text-6xl font-bold relative lg:-top-20 -top-10">
@@ -29,7 +26,9 @@ const Login = () => {
               Sign in with your Google credentials to access the patient
               dashboard
             </p>
+            <Suspense>
             <LoginButton />
+          </Suspense>
             <p className="text-light-grey font-medium max-w-72 my-3">
               Not an authorized user? Explore our{' '}
               <Link
@@ -47,7 +46,9 @@ const Login = () => {
           <p className="text-light-grey font-medium max-w-72 my-3">
             Sign in with your Google credentials to access the patient dashboard
           </p>
-          <LoginButton />
+          <Suspense>
+            <LoginButton />
+          </Suspense>
           <p className="text-light-grey font-medium max-w-72 my-3">
             Not an authorized user? Explore our{' '}
             <Link

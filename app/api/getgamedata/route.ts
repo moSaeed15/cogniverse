@@ -1,22 +1,31 @@
 import { NextResponse } from 'next/server';
-import { get, ref } from 'firebase/database';
-import { database } from '@/app/FirebaseConfig';
+import { getAdminDb } from '@/lib/firebaseAdmin';
+import { DEMO_USER_ID, getSession } from '@/lib/auth';
+import { isValidGame, isValidId } from '@/lib/validation';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const user = url.searchParams.get('user');
   const game = url.searchParams.get('game');
 
-  if (!user || !game) {
+  if (!isValidId(user) || !isValidGame(game)) {
     return NextResponse.json(
-      { success: false, message: 'Missing user or game parameter' },
+      { success: false, message: 'Invalid user or game parameter' },
       { status: 400 }
     );
   }
 
+  if (user !== DEMO_USER_ID && !(await getSession())) {
+    return NextResponse.json(
+      { success: false, message: 'Unauthorized' },
+      { status: 401 }
+    );
+  }
+
   try {
-    const gameRef = ref(database, `users/${user}/${game}`);
-    const gameSnapshot = await get(gameRef);
+    const gameSnapshot = await getAdminDb().ref(`users/${user}/${game}`).get();
 
     if (gameSnapshot.exists()) {
       const data = gameSnapshot.val();
@@ -28,6 +37,7 @@ export async function GET(request: Request) {
       );
     }
   } catch (error) {
+    console.error('getgamedata failed:', error);
     return NextResponse.json(
       { success: false, message: 'Internal Server Error' },
       { status: 500 }

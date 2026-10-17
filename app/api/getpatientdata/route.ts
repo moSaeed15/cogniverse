@@ -1,21 +1,30 @@
 import { NextResponse } from 'next/server';
-import { get, ref } from 'firebase/database';
-import { database } from '@/app/FirebaseConfig';
+import { getAdminDb } from '@/lib/firebaseAdmin';
+import { DEMO_USER_ID, getSession } from '@/lib/auth';
+import { isValidId } from '@/lib/validation';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const user = url.searchParams.get('user');
 
-  if (!user) {
+  if (!isValidId(user)) {
     return NextResponse.json(
-      { success: false, message: 'Missing user parameter' },
+      { success: false, message: 'Invalid user parameter' },
       { status: 400 }
     );
   }
 
+  if (user !== DEMO_USER_ID && !(await getSession())) {
+    return NextResponse.json(
+      { success: false, message: 'Unauthorized' },
+      { status: 401 }
+    );
+  }
+
   try {
-    const userRef = ref(database, `users/${user}`);
-    const snapshot = await get(userRef);
+    const snapshot = await getAdminDb().ref(`users/${user}`).get();
 
     if (snapshot.exists()) {
       const patientObject = snapshot.val();
@@ -46,6 +55,7 @@ export async function GET(request: Request) {
       );
     }
   } catch (error) {
+    console.error('getpatientdata failed:', error);
     return NextResponse.json(
       { success: false, message: 'Internal Server Error' },
       { status: 500 }

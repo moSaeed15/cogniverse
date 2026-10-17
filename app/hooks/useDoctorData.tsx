@@ -1,11 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { database, db } from '@/app/FirebaseConfig';
-import { get, ref } from 'firebase/database';
-import { collection, doc, getDocs } from 'firebase/firestore';
-import { getSession } from 'next-auth/react';
-import { Session } from 'next-auth';
-import { capitalize } from '@/utils/captalize';
+import { useSession } from 'next-auth/react';
 
 interface DbPatientData {
   id: string;
@@ -19,69 +14,32 @@ interface DoctorData {
 
 const useDoctorData = (): DoctorData | undefined => {
   const [doctorData, setDoctorData] = useState<DoctorData | null>(null);
-
-  const getDoctor = async (): Promise<string | null> => {
-    const session: Session | null = await getSession();
-
-    const data = await getDocs(collection(db, 'users'));
-
-    const formattedData = data.docs.map(doc => {
-      const email = doc.data().email;
-      return {
-        email: email,
-        id: doc.id,
-      };
-    });
-
-    const filteredData = formattedData.filter(dbUser => {
-      return session?.user?.email === dbUser.email;
-    });
-
-    const userId = filteredData[0]?.id || null;
-    return userId;
-  };
-
-  const getPatientsData = async (): Promise<DbPatientData[] | null> => {
-    const userRef = ref(database, 'users');
-    try {
-      const snapshot = await get(userRef);
-      const patientDataArr: DbPatientData[] = [];
-
-      snapshot.forEach(childSnapshot => {
-        const firstName = capitalize(childSnapshot.val().firstName);
-        const lastName = capitalize(childSnapshot.val().lastName);
-        const fullName = `${firstName} ${lastName}`.replace('  ', ' ');
-
-        const patientData: DbPatientData = {
-          id: childSnapshot.key || '',
-          name: fullName,
-        };
-        patientDataArr.push(patientData);
-      });
-      return patientDataArr;
-    } catch (error) {
-      return null;
-    }
-  };
+  const { data: session, status } = useSession();
 
   useEffect(() => {
+    if (status !== 'authenticated') return;
+
     const fetchData = async (): Promise<void> => {
-      const userID = await getDoctor();
-      if (!userID) return;
+      try {
+        const response = await fetch('/api/getpatients');
+        const result = await response.json();
 
-      const patientData = await getPatientsData();
-      if (!patientData) return;
-
-      const doctorData: DoctorData = {
-        id: userID,
-        patientsData: [...patientData],
-      };
-
-      setDoctorData(doctorData);
+        if (result.success && result.data) {
+          setDoctorData({
+            id: session.user?.email ?? '',
+            patientsData: result.data,
+          });
+        } else {
+          console.error('Error fetching patients:', result.message);
+        }
+      } catch (error) {
+        console.error('Error fetching patients:', error);
+      }
     };
 
     fetchData();
-  }, []);
+  }, [status, session]);
+
   if (doctorData) return doctorData;
 };
 
